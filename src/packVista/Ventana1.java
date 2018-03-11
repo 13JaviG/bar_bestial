@@ -1,4 +1,4 @@
-package packInterfaz;
+package packVista;
 
 import java.awt.EventQueue;
 
@@ -79,4 +79,5 @@ public class Ventana1 {
 		}
 		return btnNewButton_1;
 	}
+	
 }
