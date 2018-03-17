@@ -12,7 +12,9 @@ public class ColaDelBar {
 	
 	private ListaCartas susCartas;
 	
-	private ColaDelBar() {}
+	private ColaDelBar() {
+		susCartas=new ListaCartas();
+	}
 	
 	public static ColaDelBar getColaDelBar() {
 		if (miColaDelBar == null) {
@@ -22,7 +24,7 @@ public class ColaDelBar {
 	}
 	
 	/**
-	 * Añade una carta a su lista de cartas.
+	 * Aï¿½ade una carta a su lista de cartas.
 	 * @param pCarta
 	 */
 	public void addCarta(Carta pCarta) {
@@ -30,7 +32,7 @@ public class ColaDelBar {
 	}
 	
 	/*
-	 * De aquí para abajo son los métodos para las animaladas
+	 * De aquï¿½ para abajo son los mï¿½todos para las animaladas
 	 */
 	
 	public void invertirCola() {
@@ -39,10 +41,24 @@ public class ColaDelBar {
 
 	public void hacerAnimaladasR() {
 		// TODO implementar
-		
+		if (estaLlena()) {colaLlena();}		
+	}
+	
+	/**
+	 * En caso de llena mueve las 2 primeras cartas a BarBestial
+	 * y la Ultima a EsLoQueHay
+	 */
+	private void colaLlena() {
+		// TODO Auto-generated method stub
+		Carta esLoQueHay=susCartas.rmvCarta(susCartas.cuantasCartas()-1);
+		Carta barBestial1=susCartas.rmvCarta(0);
+		Carta barBestial2=susCartas.rmvCarta(0);
+		BarBestial.getBarBestial().addCarta(barBestial1);
+		BarBestial.getBarBestial().addCarta(barBestial2);
+		EsLoQueHay.getEsLoQueHay().addCarta(esLoQueHay);
 	}
 
-	private boolean estaLlena() {
+	public boolean estaLlena() {
 		return (susCartas.cuantasCartas() == 5);
 	}
 
@@ -58,7 +74,7 @@ public class ColaDelBar {
 
 
 	/**
-	 * Elimina una carta dado un índice.
+	 * Elimina una carta dado un ï¿½ndice.
 	 * @param pIndex
 	 * @return la carta eliminada.
 	 */
@@ -99,6 +115,11 @@ public class ColaDelBar {
 	public void primeraPosicionNoCuatros() {
 		// TODO implementar
 		
+	}
+
+	public void vaciar() {
+		// TODO Auto-generated method stub
+		susCartas.vaciar();
 	}
 
 }

@@ -12,7 +12,9 @@ public class BarBestial {
 	
 	private ListaCartas susCartas;
 	
-	private BarBestial() {}
+	private BarBestial() {
+		susCartas=new ListaCartas();
+	}
 	
 	public static BarBestial getBarBestial() {
 		if (miBarBestial == null) {
@@ -22,7 +24,7 @@ public class BarBestial {
 	}
 	
 	/**
-	 * Añade una carta a su lista de cartas.
+	 * Aï¿½ade una carta a su lista de cartas.
 	 * @param pCarta
 	 */
 	public void addCarta(Carta pCarta) {
@@ -30,20 +32,25 @@ public class BarBestial {
 	}
 	
 	/**
-	 * Vacía la lista de cartas.
+	 * Vacï¿½a la lista de cartas.
 	 */
 	public void vaciar() {
 		susCartas.vaciar();
 	}
 	
 	/**
-	 * Calcula la puntuación del color indicado.
+	 * Calcula la puntuaciï¿½n del color indicado.
 	 * @param pColor
 	 * @return
 	 */
 	public int calcularPuntuacion(EnumColor pColor) {
 		// TODO implementar
 		return -1;
+	}
+
+	public int cuantasCartas() {
+		// TODO Auto-generated method stub
+		return susCartas.cuantasCartas();
 	}
 
 }

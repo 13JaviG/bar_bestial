@@ -12,7 +12,9 @@ public class EsLoQueHay {
 	
 	private ListaCartas susCartas;
 	
-	private EsLoQueHay() {}
+	private EsLoQueHay() {
+		susCartas=new ListaCartas();
+	}
 	
 	public static EsLoQueHay getEsLoQueHay() {
 		if (miEsLoQueHay == null) {
@@ -22,7 +24,7 @@ public class EsLoQueHay {
 	}
 	
 	/**
-	 * Añade una carta a su lista de cartas.
+	 * Aï¿½ade una carta a su lista de cartas.
 	 * @param pCarta
 	 */
 	public void addCarta(Carta pCarta) {
@@ -30,10 +32,15 @@ public class EsLoQueHay {
 	}
 	
 	/**
-	 * Vacía la lista de cartas.
+	 * Vacï¿½a la lista de cartas.
 	 */
 	public void vaciar() {
 		susCartas.vaciar();
+	}
+
+	public int cuantasCartas() {
+		// TODO Auto-generated method stub
+		return susCartas.cuantasCartas();
 	}
 
 }
