@@ -67,11 +67,13 @@ public class Juego {
 	public void juegoNuevo() {
 		try {
 			rellenarMazos();
+			robarInicial();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+
 	/**
 	 * Rellena las cartas de los mazos de los jugadores y las baraja.
 	 * @throws Exception
@@ -84,6 +86,19 @@ public class Juego {
 		jugador.barajar();
 		cpu.barajar();
 	}
+	
+	/**
+	 * Coge las primeras 4 cartas del mazo como mano inicial
+	 */
+	private void robarInicial() {
+		
+		for(int i = 0; i<4; i++){
+			jugador.cogerCarta();
+			cpu.cogerCarta();
+		}		
+	}
+	
+	
 	
 	/**
 	 * Imprime la información de las cartas de los jugadores.

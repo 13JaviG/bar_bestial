@@ -35,7 +35,7 @@ public class ListaCartas {
 	}
 
 	/**
-	 * Elimina una carta de la lista.
+	 * Elimina una carta de la lista y te la devuelve.
 	 * @param pCarta
 	 */
 	public Carta rmvCarta(int pIndex) {

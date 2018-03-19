@@ -29,6 +29,14 @@ public class Jugador {
 	}
 	
 	/**
+	 * Añade una carta a la mano
+	 * @param pCarta
+	 */
+	private void addCartaMano(Carta pCarta){
+		suMano.addCarta(pCarta);
+	}
+	
+	/**
 	 * Elimina una carta de la mano.
 	 * @param pCarta
 	 * @return
@@ -36,7 +44,10 @@ public class Jugador {
 	public boolean rmvCartaMano(Carta pCarta) {
 		return suMano.rmvCarta(pCarta);
 	}
-
+	
+	
+	
+	
 	/**
 	 * Elimina una carta del mazo.
 	 * @param pCarta
@@ -98,6 +109,15 @@ public class Jugador {
 	 */
 	public void imprimirCartasMano() {
 		imprimirCartas(suMano);
+	}
+	
+	/**
+	 * Coge una carta del mazo y la coloca en su mano
+	 */
+	public void cogerCarta() {
+		
+		addCarta(suMazo.rmvCarta(suMazo.cuantasCartas()-1));
+		
 	}
 
 }
