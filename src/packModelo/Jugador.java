@@ -21,7 +21,7 @@ public class Jugador {
 	}
 	
 	/**
-	 * Añade una carta al mazo.
+	 * Aï¿½ade una carta al mazo.
 	 * @param pCarta
 	 */
 	public void addCarta(Carta pCarta) {
@@ -29,7 +29,7 @@ public class Jugador {
 	}
 	
 	/**
-	 * Añade una carta a la mano
+	 * Aï¿½ade una carta a la mano
 	 * @param pCarta
 	 */
 	private void addCartaMano(Carta pCarta){
@@ -98,14 +98,14 @@ public class Jugador {
 	}
 	
 	/**
-	 * Imprime la información de las cartas del mazo.
+	 * Imprime la informaciï¿½n de las cartas del mazo.
 	 */
 	public void imprimirCartasMazo() {
 		imprimirCartas(suMazo);
 	}
 
 	/**
-	 * Imprime la información de las cartas de la mano.
+	 * Imprime la informaciï¿½n de las cartas de la mano.
 	 */
 	public void imprimirCartasMano() {
 		imprimirCartas(suMano);
@@ -116,7 +116,7 @@ public class Jugador {
 	 */
 	public void cogerCarta() {
 		
-		addCarta(suMazo.rmvCarta(suMazo.cuantasCartas()-1));
+		addCartaMano(suMazo.rmvCarta(suMazo.cuantasCartas()-1));
 		
 	}
 

@@ -58,7 +58,7 @@ public class Juego {
 	 */
 	public boolean esFinDelJuego() {
 		
-		return jugador.tieneCartas() && cpu.tieneCartas();
+		return !(jugador.tieneCartas() || cpu.tieneCartas());
 	}
 	
 	/**
