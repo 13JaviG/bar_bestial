@@ -57,8 +57,8 @@ public class Juego {
 	 * @return
 	 */
 	public boolean esFinDelJuego() {
-		// TODO implementar
-		return false;
+		
+		return jugador.tieneCartas() && cpu.tieneCartas();
 	}
 	
 	/**
@@ -101,7 +101,7 @@ public class Juego {
 	
 	
 	/**
-	 * Imprime la información de las cartas de los jugadores.
+	 * Imprime la informaciï¿½n de las cartas de los jugadores.
 	 */
 	public void imprimirCartasJugadores() {
 		System.out.println("########### Cartas Jugador ###########");
