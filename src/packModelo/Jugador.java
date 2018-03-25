@@ -113,11 +113,30 @@ public class Jugador {
 	
 	/**
 	 * Coge una carta del mazo y la coloca en su mano
+	 * Hay al menos una carta en el mazo
 	 */
 	public void cogerCarta() {
 		
 		addCartaMano(suMazo.rmvCarta(suMazo.cuantasCartas()-1));
 		
+	}
+	
+	/**
+	 * Devuelve el número de cartas de la mano del jugador
+	 * @return
+	 */
+	public int numCartasMano()
+	{
+		return suMano.cuantasCartas();
+	}
+	
+	/**
+	 * Devuelve el número de cartas de la mano del jugador
+	 * @return
+	 */
+	public int numCartasMazo()
+	{
+		return suMazo.cuantasCartas();
 	}
 
 }

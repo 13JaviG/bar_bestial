@@ -41,7 +41,6 @@ public class Juego {
 	 */
 	private void jugarCPU() {
 		Carta cartaCPU = cpu.jugar();
-		// TODO implementar
 	}
 	
 	/**
@@ -119,5 +118,30 @@ public class Juego {
 		cpu.imprimirCartasMano();
 	}
 	
+	/**
+	 * Devuelve el número de cartas de la mano del jugador
+	 * @return
+	 */
+	public int numCartasManoJugador(){
+		return jugador.numCartasMano();
 
+	}
+	
+	/**
+	 * Devuelve el número de cartas del mazo del jugador
+	 * @return
+	 */
+	public int numCartasMazoJugador()
+	{
+		return jugador.numCartasMazo();
+	}
+	
+	
+	/**
+	 * El jugador coge una carta
+	 */
+	public void cogerCartaJugador()
+	{
+		jugador.cogerCarta();
+	}
 }
