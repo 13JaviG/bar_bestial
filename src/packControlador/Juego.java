@@ -3,9 +3,14 @@
  */
 package packControlador;
 
+import java.util.InputMismatchException;
+import java.util.Random;
+import java.util.Scanner;
+
 import packModelo.CPU;
 import packModelo.Carta;
 import packModelo.CartaFactory;
+import packModelo.ColaDelBar;
 import packModelo.EnumColor;
 import packModelo.Jugador;
 import packModelo.ListaCartas;
@@ -40,7 +45,11 @@ public class Juego {
 	 * Hace que la CPU juegue.
 	 */
 	private void jugarCPU() {
-		Carta cartaCPU = cpu.jugar();
+		Random  rng=new Random();
+		Carta cartaCPU = cpu.jugar(rng.nextInt(cpu.numCartasMano()));
+		ColaDelBar.getColaDelBar().addCarta(cartaCPU);
+		cartaCPU.hacerAnimalada();
+		cpu.cogerCarta();
 	}
 	
 	/**
@@ -48,6 +57,7 @@ public class Juego {
 	 * @return
 	 */
 	public boolean haGanadoJugador() {
+		System.out.println(jugador.calcularPuntuacion()+"   "+cpu.calcularPuntuacion());
 		return (jugador.calcularPuntuacion() > cpu.calcularPuntuacion());
 	}
 	
@@ -70,6 +80,7 @@ public class Juego {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		jugarPartida();
 	}
 	
 
@@ -119,7 +130,7 @@ public class Juego {
 	}
 	
 	/**
-	 * Devuelve el número de cartas de la mano del jugador
+	 * Devuelve el nï¿½mero de cartas de la mano del jugador
 	 * @return
 	 */
 	public int numCartasManoJugador(){
@@ -128,7 +139,7 @@ public class Juego {
 	}
 	
 	/**
-	 * Devuelve el número de cartas del mazo del jugador
+	 * Devuelve el nï¿½mero de cartas del mazo del jugador
 	 * @return
 	 */
 	public int numCartasMazoJugador()
@@ -143,5 +154,42 @@ public class Juego {
 	public void cogerCartaJugador()
 	{
 		jugador.cogerCarta();
+	}
+	/**
+	 * Distribuye los turnos
+	 * Empieza jugador
+	 * */
+	public void jugarPartida() {
+		while (!esFinDelJuego()) {
+			jugarJugador();
+			ColaDelBar.getColaDelBar().hacerAnimaladasR();
+			jugarCPU();
+			ColaDelBar.getColaDelBar().hacerAnimaladasR();
+		}
+		System.out.println("ha ganado jugador?"+haGanadoJugador());		
+	}
+	/** 
+	 * Se encarga de realizar las acciones de las que consiste un turno 
+	 * para el jugador
+	 * */
+	private void jugarJugador() {
+		Carta temp=null;
+		Scanner scn=new Scanner(System.in);
+		boolean avanza=false;
+		while(!avanza) {
+			jugador.imprimirCartasMano();
+			try{
+				System.out.println("introduce la posicion de la carta a jugar");
+				temp=jugador.jugar(scn.nextInt()-1);
+				ColaDelBar.getColaDelBar().addCarta(temp);
+				temp.hacerAnimalada();
+				avanza=true;
+				jugador.cogerCarta();
+			}catch(InputMismatchException e) {
+				System.out.println("introduzca un numero");
+			}catch(IndexOutOfBoundsException e) {
+				System.out.println("introduzca una posicion valida max "+jugador.numCartasMano());
+			}
+		}
 	}
 }

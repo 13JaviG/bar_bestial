@@ -3,6 +3,8 @@
  */
 package packModelo;
 
+import java.util.Iterator;
+
 /**
  * Representa el Bar.
  */
@@ -44,8 +46,12 @@ public class BarBestial {
 	 * @return
 	 */
 	public int calcularPuntuacion(EnumColor pColor) {
-		// TODO implementar
-		return -1;
+		int puntuacion=0;
+		Iterator<Carta> itr=susCartas.getIterator();
+		while (itr.hasNext()) {
+			if (itr.next().getColor().equals(pColor)) {puntuacion++;}
+		}
+		return puntuacion;
 	}
 
 	public int cuantasCartas() {

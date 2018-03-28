@@ -13,9 +13,10 @@ public class CPU extends Jugador {
 	}
 	
 	@Override
-	public Carta jugar() {
-		// TODO implementar
-		return null;
+	public Carta jugar(int pIndCarta) {
+		Carta temp=rmvCartaMano(pIndCarta);
+		this.rmvCartaMano(temp);
+		return temp;
 	}
 
 }

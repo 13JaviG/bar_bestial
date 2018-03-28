@@ -3,7 +3,9 @@
  */
 package packModelo;
 
+import java.util.InputMismatchException;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  * Representa a un jugador.
@@ -45,7 +47,9 @@ public class Jugador {
 		return suMano.rmvCarta(pCarta);
 	}
 	
-	
+	public Carta rmvCartaMano(int pIndCarta) {
+		return suMano.rmvCarta(pIndCarta);
+	}
 	
 	
 	/**
@@ -62,13 +66,14 @@ public class Jugador {
 	 * @return
 	 */
 	public int calcularPuntuacion() {
-		// TODO implementar
-		return -1;
+		return BarBestial.getBarBestial().calcularPuntuacion(color);
 	}
 	
-	public Carta jugar() {
-		// TODO implementar
-		return null;
+	public Carta jugar(int pIndCarta) {
+		Carta temp=new Carta(0, color, null);
+		temp=suMano.rmvCarta(pIndCarta);
+		suMano.rmvCarta(temp);
+		return temp;
 	}
 	
 	/**
@@ -113,16 +118,16 @@ public class Jugador {
 	
 	/**
 	 * Coge una carta del mazo y la coloca en su mano
-	 * Hay al menos una carta en el mazo
+	 * En caso de vacia no hace nada
 	 */
 	public void cogerCarta() {
-		
-		addCartaMano(suMazo.rmvCarta(suMazo.cuantasCartas()-1));
-		
+		if(suMazo.cuantasCartas()!=0) {
+			addCartaMano(suMazo.rmvCarta(suMazo.cuantasCartas()-1));
+		}
 	}
 	
 	/**
-	 * Devuelve el número de cartas de la mano del jugador
+	 * Devuelve el nï¿½mero de cartas de la mano del jugador
 	 * @return
 	 */
 	public int numCartasMano()
@@ -131,7 +136,7 @@ public class Jugador {
 	}
 	
 	/**
-	 * Devuelve el número de cartas de la mano del jugador
+	 * Devuelve el nï¿½mero de cartas de la mano del jugador
 	 * @return
 	 */
 	public int numCartasMazo()
