@@ -3,6 +3,8 @@
  */
 package packModelo;
 
+import java.util.Iterator;
+
 /**
  * Representa el Bar.
  */

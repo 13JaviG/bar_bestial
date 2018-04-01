@@ -169,24 +169,26 @@ public class Juego {
 		System.out.println("ha ganado jugador?"+haGanadoJugador());		
 	}
 	/** 
-	 * Se encarga de realizar las acciones de las que consiste un turno 
-	 * para el jugador
+	 * jugador eligue pos de carta que quiere jugar la anade a la cola del bar
+	 * hace su animalada y la animalada
 	 * */
 	private void jugarJugador() {
 		Carta temp=null;
-		Scanner scn=new Scanner(System.in);
+		Scanner teclado=new Scanner(System.in);
 		boolean avanza=false;
 		while(!avanza) {
+			System.out.println("Mano:");
 			jugador.imprimirCartasMano();
 			try{
 				System.out.println("introduce la posicion de la carta a jugar");
-				temp=jugador.jugar(scn.nextInt()-1);
+				temp=jugador.jugar(teclado.nextInt()-1);
 				ColaDelBar.getColaDelBar().addCarta(temp);
 				temp.hacerAnimalada();
 				avanza=true;
 				jugador.cogerCarta();
 			}catch(InputMismatchException e) {
 				System.out.println("introduzca un numero");
+				teclado.nextLine();
 			}catch(IndexOutOfBoundsException e) {
 				System.out.println("introduzca una posicion valida max "+jugador.numCartasMano());
 			}
