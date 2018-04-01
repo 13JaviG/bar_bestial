@@ -13,7 +13,7 @@ class TestFinDeJuego {
 		assertEquals(true,Juego.getJuego().esFinDelJuego());
 		Juego.getJuego().juegoNuevo();
 		Juego.getJuego().imprimirCartasJugadores();
-		assertEquals(false,Juego.getJuego().esFinDelJuego());
+		assertEquals(true,Juego.getJuego().esFinDelJuego());
 	}
 
 }
