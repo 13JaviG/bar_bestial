@@ -90,30 +90,19 @@ public class Jugador {
 	public void barajar() {
 		suMazo.desordenar();
 	}
-
-	/**
-	 * Dada una lista de cartas imprime su contenido.
-	 * @param cartas
-	 */
-	private void imprimirCartas(ListaCartas cartas) {
-		Iterator<Carta> it = cartas.getIterator();
-		while (it.hasNext()) {
-			System.out.println(it.next().toString());
-		}
-	}
 	
 	/**
 	 * Imprime la informaci�n de las cartas del mazo.
 	 */
 	public void imprimirCartasMazo() {
-		imprimirCartas(suMazo);
+		suMazo.imprimirCartas();
 	}
 
 	/**
 	 * Imprime la informaci�n de las cartas de la mano.
 	 */
 	public void imprimirCartasMano() {
-		imprimirCartas(suMano);
+		suMano.imprimirCartas();
 	}
 	
 	/**

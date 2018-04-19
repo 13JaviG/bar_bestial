@@ -19,7 +19,7 @@ public class ListaCartas {
 	}
 	
 	/**
-	 * Añade una carta a la lista.
+	 * Aï¿½ade una carta a la lista.
 	 * @param pCarta
 	 */
 	public void addCarta(Carta pCarta) {
@@ -50,7 +50,7 @@ public class ListaCartas {
 	}
 	
 	/**
-	 * Devuelve el número de cartas que hay en la lista.
+	 * Devuelve el nï¿½mero de cartas que hay en la lista.
 	 * @return
 	 */
 	public int cuantasCartas() {
@@ -69,6 +69,17 @@ public class ListaCartas {
 	 */
 	public void vaciar() {
 		cartas.clear();
+	}
+	
+	/**
+	 * Dada una lista de cartas imprime su contenido.
+	 * @param cartas
+	 */
+	public void imprimirCartas() {
+		Iterator<Carta> it = cartas.iterator();
+		while (it.hasNext()) {
+			System.out.println(it.next().toString());
+		}
 	}
 
 }
