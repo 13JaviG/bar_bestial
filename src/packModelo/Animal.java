@@ -9,5 +9,5 @@ package packModelo;
  */
 public abstract class Animal {
 
-	public void hacerAnimalada() {};
+	public void hacerAnimalada(Carta pCarta) {};
 }

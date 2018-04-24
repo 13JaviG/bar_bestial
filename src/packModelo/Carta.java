@@ -19,8 +19,13 @@ public class Carta {
 		animal = pAnimal;
 	}
 	
-	public void hacerAnimalada() {
-		animal.hacerAnimalada();
+	public int getNum(){
+		return num;
+	}
+	
+	public void hacerAnimalada(Carta this) {
+		animal.hacerAnimalada(this);
+		
 	}
 	
 	/**

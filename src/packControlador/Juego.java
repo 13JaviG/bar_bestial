@@ -142,6 +142,9 @@ public class Juego {
 	 */
 	public void cogerCartaJugador()
 	{
-		jugador.cogerCarta();
+		if(numCartasMazoJugador()>0){
+			jugador.cogerCarta();	
+		}
+		
 	}
 }

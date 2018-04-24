@@ -3,6 +3,9 @@
  */
 package packModelo;
 
+import java.util.Iterator;
+import java.util.ListIterator;
+
 /**
  * Representa el Bar.
  */
@@ -91,21 +94,81 @@ public class ColaDelBar {
 		// TODO implementar
 		return null;
 	}
-
-	public void avanzaSiMayor() {
-		// TODO implementar
+	
+	/**
+	 * Método usado para avanzar tanto si es una Jirafa como si es un Hipopótamo
+	 */
+	public void avanzaSiMayor(Carta pCarta) {
 		
+		Carta act=pCarta;
+		Carta sig;
+		boolean stop = false;
+		int i= susCartas.indexCarta(pCarta);
+		
+		while(i>0 && !stop)
+		{	
+			sig= susCartas.cartaIndex(i-1);
+			
+			if(act.getNum()==8 || act.getNum()==11)
+			{		//Si es una jirafa o un hipopótamo
+				
+				if(sig.getNum()<act.getNum() && sig.getNum()!= 7)
+				{	//Si es una carta más débil y no es cebra
+					
+					susCartas.intercambiar(sig,act); // intercambiamos las cartas de posición
+					
+					if(act.getNum()==8){	//Si era el caso de la jirafa sólo avanza una vez
+						stop = true;
+					}
+				}
+				else
+				{
+					stop = true; //No puede avanzar más
+				}
+			}
+			
+			act=sig;
+			i--;
+		}
 	}
 
 	public void ordenarDescendente() {
 		// TODO implementar
 		
 	}
-
-	public void avanzarEliminando() {
-		// TODO implementar
+	
+	/**
+	 * Método para avanzar eliminando las cartas a las que "adelantas", usado en la animalada del Cocodrilo
+	 * @param pCarta
+	 * Desde la carta que empiezas, es decir, la que hace la animalada
+	 */
+	public void avanzarEliminando(Carta pCarta) {
 		
+		Carta act=pCarta;
+		Carta sig;
+		boolean stop = false;
+		int i= susCartas.indexCarta(pCarta);
+		
+		while(i>0 && !stop)
+		{	
+			sig= susCartas.cartaIndex(i-1);
+			
+				if(sig.getNum()<act.getNum() && sig.getNum()!= 7)
+				{	//Si es una carta más débil y no es cebra
+					
+					susCartas.rmvCarta(sig); // Eliminamos la carta correspondiente
+					
+				}
+				else
+				{
+					stop = true;
+				}
+			i--;
+		}
+			
 	}
+		
+
 
 	public void adelantarse() {
 		// TODO implementar

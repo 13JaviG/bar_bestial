@@ -6,6 +6,7 @@ package packModelo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.ListIterator;
 
 /**
  * Representa una lista de cartas de animales.
@@ -43,6 +44,19 @@ public class ListaCartas {
 	}
 	
 	/**
+	 * Intercambia de posición dos cartas
+	 * @param pCarta1, pCarta2 
+	 * Cartas a intercambiar
+	 */
+	public void intercambiar(Carta pCarta1, Carta pCarta2){
+		
+		Carta aux = pCarta1;
+		cartas.set(cartas.indexOf(pCarta1), pCarta2);
+		cartas.set(cartas.indexOf(pCarta2), aux);
+		
+	}
+	
+	/**
 	 * Devuelve un iterador de la lista de cartas.
 	 */
 	public Iterator<Carta> getIterator() {
@@ -70,5 +84,22 @@ public class ListaCartas {
 	public void vaciar() {
 		cartas.clear();
 	}
-
+	
+	/**
+	 * Devuelve el índice de una carta dada
+	 * @param pCarta
+	 * Carta de la que queremos saber el índice
+	 */
+	public int indexCarta(Carta pCarta){
+		return cartas.indexOf(pCarta);
+	}
+	
+	/**
+	 * Devuelve la carta en determinada posición
+	 * @param pIndex
+	 * Índice de la carta a devolver
+	 */
+	public Carta cartaIndex(int pIndex){
+		return cartas.get(pIndex);
+	}
 }
