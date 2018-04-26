@@ -64,10 +64,36 @@ public class ColaDelBar {
 	public boolean estaLlena() {
 		return (susCartas.cuantasCartas() == 5);
 	}
-
+	
+	/**
+	 * Método para eliminar las dos especies más altas, usado por la Mofeta
+	 */
 	public void rmvEspMasAltas() {
-		// TODO implementar
 		
+		int max = 0;	//Valor de la especie más alta
+		Carta act;
+		int espAltas = 0; //Cuántas especies has eliminado
+		while(espAltas<2 && susCartas.cuantasCartas()>0){
+			for(Iterator<Carta> it = susCartas.getIterator(); it.hasNext();)
+			{
+				act=it.next();
+				if(act.getNum()>max)
+				{
+					max = act.getNum();
+				}
+			}
+			for(Iterator<Carta> it = susCartas.getIterator(); it.hasNext();)
+			{
+				act=it.next();
+				if(act.getNum()==max)
+				{
+					it.remove();
+				
+				}
+			}
+			espAltas++;
+			max = 0;
+		}
 	}
 
 	public void reordenarCola() {
@@ -77,7 +103,7 @@ public class ColaDelBar {
 
 
 	/**
-	 * Elimina una carta dado un ï¿½ndice.
+	 * Elimina una carta dado un índice
 	 * @param pIndex
 	 * @return la carta eliminada.
 	 */
@@ -97,17 +123,19 @@ public class ColaDelBar {
 	
 	/**
 	 * Método usado para avanzar tanto si es una Jirafa como si es un Hipopótamo
+	 * @param pCarta
+	 * La carta que hace la animalada, para saber por dónde empezar
 	 */
 	public void avanzaSiMayor(Carta pCarta) {
 		
 		Carta act=pCarta;
 		Carta sig;
 		boolean stop = false;
-		int i= susCartas.indexCarta(pCarta);
+		int i= susCartas.indexCarta(pCarta); //Método que te devuelve el índice dependiendo de la carta
 		
 		while(i>0 && !stop)
 		{	
-			sig= susCartas.cartaIndex(i-1);
+			sig= susCartas.cartaIndex(i-1); //Método que te devuelve la carta dependiendo del índice
 			
 			if(act.getNum()==8 || act.getNum()==11)
 			{		//Si es una jirafa o un hipopótamo
@@ -116,14 +144,13 @@ public class ColaDelBar {
 				{	//Si es una carta más débil y no es cebra
 					
 					susCartas.intercambiar(sig,act); // intercambiamos las cartas de posición
-					
 					if(act.getNum()==8){	//Si era el caso de la jirafa sólo avanza una vez
 						stop = true;
 					}
 				}
 				else
 				{
-					stop = true; //No puede avanzar más
+					stop = true; //No puede avanzar más ya que no es mayor que la siguiente o hay una cebra
 				}
 			}
 			
@@ -157,13 +184,14 @@ public class ColaDelBar {
 				{	//Si es una carta más débil y no es cebra
 					
 					susCartas.rmvCarta(sig); // Eliminamos la carta correspondiente
+					i= susCartas.indexCarta(act); //Damos a 'i' el nuevo valor de la posición del cocodrilo
 					
 				}
 				else
 				{
 					stop = true;
 				}
-			i--;
+			
 		}
 			
 	}
