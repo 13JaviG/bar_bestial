@@ -13,10 +13,10 @@ public class Carta {
 	private EnumColor color;
 	private Animal animal;
 	
-	public Carta(int pNum, EnumColor pColor, Animal pAnimal) {
+	public Carta(int pNum, EnumColor pColor) throws Exception {
 		num = pNum;
 		color = pColor;
-		animal = pAnimal;
+		animal = CartaFactory.getCartaFactory().crearCarta(pNum);
 	}
 	
 	public int getNum(){
@@ -29,7 +29,7 @@ public class Carta {
 	}
 	
 	/**
-	 * Devuelve un string con la información de la carta.
+	 * Devuelve un string con la informaciï¿½n de la carta.
 	 */
 	public String toString() {
 		StringBuilder result = new StringBuilder();

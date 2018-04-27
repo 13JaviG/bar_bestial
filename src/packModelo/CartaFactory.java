@@ -17,7 +17,7 @@ import packModelo.animales.Mono;
 import packModelo.animales.Serpiente;
 
 /**
- * Representa una fábrica de cartas.
+ * Representa una fï¿½brica de cartas.
  */
 public class CartaFactory {
 	
@@ -37,67 +37,40 @@ public class CartaFactory {
 	}
 	
 	/**
-	 * Crea la carta basándose en el número y color indicados.
+	 * Crea la carta basï¿½ndose en el nï¿½mero y color indicados.
 	 * @param pNum
 	 * @param pColor
 	 * @return
 	 * @throws Exception
 	 */
-	public Carta crearCarta(int pNum, EnumColor pColor) throws Exception {
-		Carta carta;
+	public Animal crearCarta(int pNum) throws Exception {
 		switch (pNum) {
 		case 1:
-			carta = new Carta(pNum, pColor, new Mofeta());
-			break;
-
+			return new Mofeta();
 		case 2:
-			carta = new Carta(pNum, pColor, new Loro());
-			break;
-
+			return new Loro();
 		case 3:
-			carta = new Carta(pNum, pColor, new Canguro());
-			break;
-
+			return new Canguro();
 		case 4:
-			carta = new Carta(pNum, pColor, new Mono());
-			break;
-
+			return new Mono();
 		case 5:
-			carta = new Carta(pNum, pColor, new Camaleon());
-			break;
-
+			return new Camaleon();
 		case 6:
-			carta = new Carta(pNum, pColor, new Foca());
-			break;
-
+			return new Foca();
 		case 7:
-			carta = new Carta(pNum, pColor, new Cebra());
-			break;
-
+			return new Cebra();
 		case 8:
-			carta = new Carta(pNum, pColor, new Jirafa());
-			break;
-
+			return new Jirafa();
 		case 9:
-			carta = new Carta(pNum, pColor, new Serpiente());
-			break;
-
+			return new Serpiente();
 		case 10:
-			carta = new Carta(pNum, pColor, new Cocodrilo());
-			break;
-
+			return new Cocodrilo();
 		case 11:
-			carta = new Carta(pNum, pColor, new Hipopotamo());
-			break;
-
+			return new Hipopotamo();
 		case 12:
-			carta = new Carta(pNum, pColor, new Leon());
-			break;
-
+			return new Leon();
 		default:
-			throw new Exception("El numero de la carta no está soportado.");
+			throw new Exception("El numero de la carta no estÃ¡ soportado.");
 		}
-		
-		return carta;
 	}
 }

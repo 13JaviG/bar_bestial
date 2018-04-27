@@ -79,8 +79,8 @@ public class Juego {
 	 */
 	private void rellenarMazos() throws Exception {
 		for(int i = 1; i <= 12; i++) {
-			jugador.addCarta(CartaFactory.getCartaFactory().crearCarta(i, jugadorColor));
-			cpu.addCarta(CartaFactory.getCartaFactory().crearCarta(i, cpuColor));
+			jugador.addCarta(new Carta(i, jugadorColor));
+			cpu.addCarta(new Carta(i, jugadorColor));
 		}
 		jugador.barajar();
 		cpu.barajar();
@@ -119,7 +119,7 @@ public class Juego {
 	}
 	
 	/**
-	 * Devuelve el número de cartas de la mano del jugador
+	 * Devuelve el nï¿½mero de cartas de la mano del jugador
 	 * @return
 	 */
 	public int numCartasManoJugador(){
@@ -128,7 +128,7 @@ public class Juego {
 	}
 	
 	/**
-	 * Devuelve el número de cartas del mazo del jugador
+	 * Devuelve el nï¿½mero de cartas del mazo del jugador
 	 * @return
 	 */
 	public int numCartasMazoJugador()
