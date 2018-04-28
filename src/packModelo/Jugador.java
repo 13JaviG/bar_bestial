@@ -70,7 +70,7 @@ public class Jugador {
 	}
 	
 	public Carta jugar(int pIndCarta) {
-		Carta temp=new Carta(0, color, null);
+		Carta temp;
 		temp=suMano.rmvCarta(pIndCarta);
 		suMano.rmvCarta(temp);
 		return temp;

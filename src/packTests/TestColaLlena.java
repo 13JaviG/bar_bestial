@@ -17,11 +17,9 @@ class TestColaLlena {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		ColaDelBar.getColaDelBar().addCarta(CartaFactory.getCartaFactory().crearCarta(1, EnumColor.AZUL));
-		ColaDelBar.getColaDelBar().addCarta(CartaFactory.getCartaFactory().crearCarta(2, EnumColor.AZUL));
-		ColaDelBar.getColaDelBar().addCarta(CartaFactory.getCartaFactory().crearCarta(3, EnumColor.AZUL));
-		ColaDelBar.getColaDelBar().addCarta(CartaFactory.getCartaFactory().crearCarta(4, EnumColor.AZUL));
-		ColaDelBar.getColaDelBar().addCarta(CartaFactory.getCartaFactory().crearCarta(5, EnumColor.AZUL));
+		for (int i = 1; i <= 5; i++) {
+			ColaDelBar.getColaDelBar().addCarta(new Carta(i, EnumColor.AZUL));
+		}
 	}
 
 	@AfterEach

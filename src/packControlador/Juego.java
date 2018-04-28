@@ -90,8 +90,8 @@ public class Juego {
 	 */
 	private void rellenarMazos() throws Exception {
 		for(int i = 1; i <= 12; i++) {
-			jugador.addCarta(CartaFactory.getCartaFactory().crearCarta(i, jugadorColor));
-			cpu.addCarta(CartaFactory.getCartaFactory().crearCarta(i, cpuColor));
+			jugador.addCarta(new Carta(i, jugadorColor));
+			cpu.addCarta(new Carta(i, jugadorColor));
 		}
 		jugador.barajar();
 		cpu.barajar();
@@ -153,7 +153,10 @@ public class Juego {
 	 */
 	public void cogerCartaJugador()
 	{
-		jugador.cogerCarta();
+		if(numCartasMazoJugador()>0){
+			jugador.cogerCarta();	
+		}
+		
 	}
 	/**
 	 * Distribuye los turnos
@@ -177,6 +180,8 @@ public class Juego {
 		Scanner teclado=new Scanner(System.in);
 		boolean avanza=false;
 		while(!avanza) {
+			System.out.println("Campo:");
+			ColaDelBar.getColaDelBar().imprimirColaDelBar();
 			System.out.println("Mano:");
 			jugador.imprimirCartasMano();
 			try{

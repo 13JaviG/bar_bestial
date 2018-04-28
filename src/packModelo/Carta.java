@@ -13,14 +13,19 @@ public class Carta {
 	private EnumColor color;
 	private Animal animal;
 	
-	public Carta(int pNum, EnumColor pColor, Animal pAnimal) {
+	public Carta(int pNum, EnumColor pColor) throws Exception {
 		num = pNum;
-		color=pColor;
-		animal = pAnimal;
+		color = pColor;
+		animal = CartaFactory.getCartaFactory().crearCarta(pNum);
 	}
 	
-	public void hacerAnimalada() {
-		animal.hacerAnimalada();
+	public int getNum(){
+		return num;
+	}
+	
+	public void hacerAnimalada(Carta this) {
+		animal.hacerAnimalada(this);
+		
 	}
 	
 	/**
