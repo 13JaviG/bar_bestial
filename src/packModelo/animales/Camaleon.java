@@ -10,5 +10,8 @@ import packModelo.Animal;
  *
  */
 public class Camaleon extends Animal {
-
+	
+	public void hacerAnimalada() {
+		
+	}
 }

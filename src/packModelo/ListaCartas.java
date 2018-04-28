@@ -5,7 +5,9 @@ package packModelo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ListIterator;
 
 /**
@@ -112,4 +114,14 @@ public class ListaCartas {
 	public Carta cartaIndex(int pIndex){
 		return cartas.get(pIndex);
 	}
-}
+
+	public void ordenarDescendente() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void reordenar() {
+		// TODO Auto-generated method stub
+		Collections.reverse(cartas);
+	}
+	}

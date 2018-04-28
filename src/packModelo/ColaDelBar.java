@@ -3,8 +3,10 @@
  */
 package packModelo;
 
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.Scanner;
 
 /**
  * Representa el Bar.
@@ -98,8 +100,8 @@ public class ColaDelBar {
 
 	public void reordenarCola() {
 		// TODO implementar
-		
-	}
+		susCartas.reordenar();
+		}
 
 
 	/**
@@ -115,7 +117,12 @@ public class ColaDelBar {
 		// TODO implementar
 		
 	}
-
+	
+	/**
+	 * recibe una posicion y devuelve una carta si esa posicion existe si no nada
+	 * @param pPos
+	 * @return
+	 */
 	public Carta getCarta(int pPos) {
 		// TODO implementar
 		return null;
@@ -158,10 +165,36 @@ public class ColaDelBar {
 			i--;
 		}
 	}
+	
+	/**
+	 * Metedo que imita la animalada de otro animal excepto la del camaleon
+	 */
+	public void clonar(Carta pCarta) {
+		Carta temp=null;
+		Scanner teclado=new Scanner(System.in);
+		boolean avanza=false;
+		while(!avanza) {
+			System.out.println("Campo:");
+			imprimirColaDelBar();
+			try{
+				System.out.println("introduce la posicion de la carta a copiar");
+				temp=getCarta(teclado.nextInt()-1);
+				switch (temp.getNum()) {
+				case (1):
+				}
+				avanza=true;
+			}catch(InputMismatchException e) {
+				System.out.println("introduzca un numero");
+				teclado.nextLine();
+			}catch(IndexOutOfBoundsException e) {
+				System.out.println("introduzca una posicion valida max "+cuantasHay());
+			}
+		}
+	}
 
-	public void ordenarDescendente() {
+	public void ordenarDesc() {
 		// TODO implementar
-		
+		susCartas.ordenarDescendente();
 	}
 	
 	/**
@@ -205,6 +238,19 @@ public class ColaDelBar {
 
 	public void primeraPosicionNoCuatros() {
 		// TODO implementar
+		boolean noLeon=true;
+		for(int i=0;i<=susCartas.cuantasCartas()-1;i++) {
+			if(susCartas.cartaIndex(i).getNum()==12){
+				susCartas.rmvCarta(susCartas.cuantasCartas());
+				noLeon=false;
+			}
+		}
+		if(noLeon) {
+			susCartas.intercambiar(susCartas.cartaIndex(0), susCartas.cartaIndex(susCartas.cuantasCartas()-1));
+			for(int i=0;i<=susCartas.cuantasCartas();i++) {
+				if(susCartas.cartaIndex(i).getNum()==4) {susCartas.rmvCarta(i);}
+			}
+		}
 		
 	}
 
@@ -217,6 +263,11 @@ public class ColaDelBar {
 	 */
 	public void imprimirColaDelBar() {
 		susCartas.imprimirCartas();
+	}
+
+	public int cuantasHay() {
+		// TODO Auto-generated method stub
+		return susCartas.cuantasCartas();
 	}
 
 }
