@@ -88,4 +88,30 @@ class TestAnimaladas {
 		System.out.println("Estado del bar después del salto");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 	}
+
+	@Test
+	void testJirafaPuedePasar() throws Exception {
+		System.out.println("\nJirafa: pudiendo pasar");
+		Carta jirafa = new Carta(8,jugarColor,CartaFactory.getCartaFactory().crearCarta(8));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
+		ColaDelBar.getColaDelBar().addCarta(jirafa);
+		jirafa.hacerAnimalada();
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		assertEquals(jirafa,ColaDelBar.getColaDelBar().getCarta(1));
+	}
+
+	@Test
+	void testJirafaNoPuedePasar() throws Exception {
+		System.out.println("\nJirafa: sin poder pasar");
+		Carta jirafa = new Carta(3,jugarColor,CartaFactory.getCartaFactory().crearCarta(3));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(8,jugarColor, CartaFactory.getCartaFactory().crearCarta(8)));
+		ColaDelBar.getColaDelBar().addCarta(jirafa);
+		jirafa.hacerAnimalada();
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		assertEquals(jirafa,ColaDelBar.getColaDelBar().getCarta(3));
+	}
+
 }
