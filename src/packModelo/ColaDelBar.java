@@ -326,13 +326,9 @@ public class ColaDelBar {
 		}
 
 		int cuantasAvanzar = paraAvanzar.size();
-		System.out.println("Al principio el tamaño es " + paraAvanzar.size());
 		int contador = 0;
 		while (contador < cuantasAvanzar) {
-			System.out.println("Contador " + contador);
-			System.out.println("CuantasAvanzar " + cuantasAvanzar);
 			Carta carta = paraAvanzar.remove(0);
-			System.out.println("Despues el tamaño es " + paraAvanzar.size());
 			ponerEnPos(contador, carta);
 			contador++;
 		}
