@@ -123,10 +123,23 @@ public class ListaCartas {
 	public Carta cartaIndex(int pIndex){
 		return cartas.get(pIndex);
 	}
-
+	/**
+	 * ordena de mayor a menor la lista segun su numero de carta
+	 */
 	public void ordenarDescendente() {
 		// TODO Auto-generated method stub
-		
+		Carta masAlta;
+		ArrayList<Carta> temp=new ArrayList<Carta>();
+		while(cartas.size()!=0) {
+			masAlta=cartas.get(0);
+			for(Carta i:cartas) {
+				if(masAlta.getNum()<i.getNum()) {masAlta=i;}
+			}
+			temp.add(masAlta);
+			cartas.remove(masAlta);
+			
+		}
+		cartas=temp;
 	}
 
 	public void invertir() {

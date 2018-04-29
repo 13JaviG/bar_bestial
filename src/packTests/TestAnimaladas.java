@@ -26,6 +26,7 @@ class TestAnimaladas {
 
 	@Test
 	void testLeon() throws Exception {
+		System.out.println("leon");
 		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(4,jugarColor,CartaFactory.getCartaFactory().crearCarta(4)));
@@ -37,6 +38,7 @@ class TestAnimaladas {
 	}
 	@Test
 	void testFoca() throws Exception {
+		System.out.println("foca");
 		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(4,jugarColor,CartaFactory.getCartaFactory().crearCarta(4)));
@@ -46,5 +48,29 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(foca,ColaDelBar.getColaDelBar().getCarta(0));
 	}
-
+	@Test
+	void testSerpiente() throws Exception {
+		System.out.println("Serpiente");
+		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(4,jugarColor,CartaFactory.getCartaFactory().crearCarta(4)));
+		Carta serpiente=new Carta(9,jugarColor,CartaFactory.getCartaFactory().crearCarta(9));
+		ColaDelBar.getColaDelBar().addCarta(serpiente);
+		serpiente.hacerAnimalada();
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		assertEquals(serpiente,ColaDelBar.getColaDelBar().getCarta(0));
+	}
+	@Test
+	void testCamaleon() throws Exception {
+		System.out.println("Camaleon");
+		Carta pruebaCSerp=new Carta(9,jugarColor,CartaFactory.getCartaFactory().crearCarta(9));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
+		ColaDelBar.getColaDelBar().addCarta(pruebaCSerp);
+		Carta camaleon=new Carta(5,jugarColor,CartaFactory.getCartaFactory().crearCarta(5));
+		ColaDelBar.getColaDelBar().addCarta(camaleon);
+		camaleon.hacerAnimalada();
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		assertEquals(pruebaCSerp,ColaDelBar.getColaDelBar().getCarta(0));
+	}
 }
