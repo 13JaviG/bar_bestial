@@ -21,8 +21,8 @@ import packModelo.ListaCartas;
  */
 public class Juego {
 	
-	private static EnumColor jugadorColor = EnumColor.AZUL;
-	private static EnumColor cpuColor = EnumColor.VERDE;
+	public static final EnumColor jugadorColor = EnumColor.AZUL;
+	public static final EnumColor cpuColor = EnumColor.VERDE;
 	
 	private static Juego miJuego;
 	private Jugador jugador;
@@ -156,11 +156,39 @@ public class Juego {
 	 * Empieza jugador
 	 * */
 	public void jugarPartida() {
+		int ronda = 1;
 		while (!esFinDelJuego()) {
+
+			System.out.println("\n\n############# RONDA " + ronda + " ##################");
+			System.out.println("------------------Campo:-----------------");
+			ColaDelBar.getColaDelBar().imprimirColaDelBar();
+			System.out.println("-----------------------------------------");
+
+			System.out.println("\nTURNO DE JUGADOR.");
+			System.out.println("Mano:");
+			jugador.imprimirCartasMano();
 			jugarJugador();
+			System.out.println("------------------Campo:-----------------");
+			ColaDelBar.getColaDelBar().imprimirColaDelBar();
+			System.out.println("-----------------------------------------");
+			System.out.println("Se ejecutan animaladas recurrentes...");
 			ColaDelBar.getColaDelBar().hacerAnimaladasR();
+			System.out.println("------------------Campo:-----------------");
+			ColaDelBar.getColaDelBar().imprimirColaDelBar();
+			System.out.println("-----------------------------------------");
+
+			System.out.println("\nTURNO DE CPU.");
+			System.out.println("CPU - coloca carta.");
 			jugarCPU();
+			System.out.println("------------------Campo:-----------------");
+			ColaDelBar.getColaDelBar().imprimirColaDelBar();
+			System.out.println("-----------------------------------------");
+			System.out.println("Se ejecutan animaladas recurrentes...");
 			ColaDelBar.getColaDelBar().hacerAnimaladasR();
+			System.out.println("------------------Campo:-----------------");
+			ColaDelBar.getColaDelBar().imprimirColaDelBar();
+			System.out.println("-----------------------------------------");
+			ronda++;
 		}
 		System.out.println("ha ganado jugador?"+haGanadoJugador());		
 	}
@@ -169,12 +197,10 @@ public class Juego {
 	 * Hace que la CPU juegue.
 	 */
 	private void jugarCPU() {
-		System.out.println("Turno de CPU.");
 		Random  rng=new Random();
 		int numCartas = cpu.numCartasMano();
 		Carta cartaCPU = cpu.jugar(rng.nextInt(numCartas));
 		ColaDelBar.getColaDelBar().addCarta(cartaCPU);
-		// TODO si la carta requiere input darle uno aleatorio
 		cartaCPU.hacerAnimalada();
 		cpu.cogerCarta();
 	}
@@ -189,10 +215,6 @@ public class Juego {
 		Scanner teclado=new Scanner(System.in);
 		boolean avanza=false;
 		while(!avanza) {
-			System.out.println("Campo:");
-			ColaDelBar.getColaDelBar().imprimirColaDelBar();
-			System.out.println("Mano:");
-			jugador.imprimirCartasMano();
 			try{
 				System.out.println("introduce la posicion de la carta a jugar");
 				temp=jugador.jugar(teclado.nextInt()-1);
