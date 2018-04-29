@@ -4,6 +4,7 @@
 package packModelo.animales;
 
 import packModelo.Animal;
+import packModelo.Carta;
 import packModelo.ColaDelBar;
 
 /**
@@ -11,8 +12,8 @@ import packModelo.ColaDelBar;
  *
  */
 public class Foca extends Animal {
-	
-	public void hacerAnimalada() {
-		ColaDelBar.getColaDelBar().reordenarCola();
+	@Override
+	public void hacerAnimalada(Carta pCarta) {
+		ColaDelBar.getColaDelBar().invertirCola();;
 	}
 }

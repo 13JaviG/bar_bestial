@@ -164,20 +164,6 @@ public class Juego {
 		}
 		System.out.println("ha ganado jugador?"+haGanadoJugador());		
 	}
-	/** 
-	 * jugador eligue pos de carta que quiere jugar la anade a la cola del bar
-	 * hace su animalada y la animalada
-	 * */
-	private void jugarJugador() {
-		Random  rng=new Random();
-		int numCartas = jugador.numCartasMano();
-		// TODO coge random de momento para hacer tests
-		Carta cartaJugador = jugador.jugar(rng.nextInt(numCartas));
-		ColaDelBar.getColaDelBar().addCarta(cartaJugador);
-		// TODO si la carta requiere input pedirlo
-		cartaJugador.hacerAnimalada();
-		jugador.cogerCarta();
-	}
 
 	/**
 	 * Hace que la CPU juegue.
@@ -191,4 +177,35 @@ public class Juego {
 		cartaCPU.hacerAnimalada();
 		cpu.cogerCarta();
 	}
+
+	/** 
+	 * jugador eligue pos de carta que quiere jugar la anade a la cola del bar
+	 * hace su animalada y la animalada
+	 * */
+	private void jugarJugador() {
+
+		Carta temp=null;
+		Scanner teclado=new Scanner(System.in);
+		boolean avanza=false;
+		while(!avanza) {
+			System.out.println("Campo:");
+			ColaDelBar.getColaDelBar().imprimirColaDelBar();
+			System.out.println("Mano:");
+			jugador.imprimirCartasMano();
+			try{
+				System.out.println("introduce la posicion de la carta a jugar");
+				temp=jugador.jugar(teclado.nextInt()-1);
+				ColaDelBar.getColaDelBar().addCarta(temp);
+				temp.hacerAnimalada();
+				avanza=true;
+				jugador.cogerCarta();
+			}catch(InputMismatchException e) {
+				System.out.println("introduzca un numero");
+				teclado.nextLine();
+			}catch(IndexOutOfBoundsException e) {
+				System.out.println("introduzca una posicion valida max "+jugador.numCartasMano());
+			}
+		}
+	}
 }
+

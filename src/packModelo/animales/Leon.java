@@ -4,6 +4,7 @@
 package packModelo.animales;
 
 import packModelo.Animal;
+import packModelo.Carta;
 import packModelo.ColaDelBar;
 
 /**
@@ -11,7 +12,8 @@ import packModelo.ColaDelBar;
  *
  */
 public class Leon extends Animal {
-	public void hacerAnimalada() {
+	@Override
+	public void hacerAnimalada(Carta pCarta) {
 		ColaDelBar.getColaDelBar().primeraPosicionNoCuatros();
 	}
 }
