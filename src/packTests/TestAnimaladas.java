@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import packModelo.Carta;
+import packModelo.CartaFactory;
 import packModelo.ColaDelBar;
 import packModelo.EnumColor;
 
@@ -25,10 +26,10 @@ class TestAnimaladas {
 
 	@Test
 	void testLeon() throws Exception {
-		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor));
-		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor));
-		ColaDelBar.getColaDelBar().addCarta(new Carta(4,jugarColor));
-		Carta leon=new Carta(12,jugarColor);
+		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(4,jugarColor,CartaFactory.getCartaFactory().crearCarta(4)));
+		Carta leon=new Carta(12,jugarColor,CartaFactory.getCartaFactory().crearCarta(12));
 		ColaDelBar.getColaDelBar().addCarta(leon);
 		leon.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
@@ -36,10 +37,10 @@ class TestAnimaladas {
 	}
 	@Test
 	void testFoca() throws Exception {
-		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor));
-		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor));
-		ColaDelBar.getColaDelBar().addCarta(new Carta(4,jugarColor));
-		Carta foca=new Carta(6,jugarColor);
+		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(4,jugarColor,CartaFactory.getCartaFactory().crearCarta(4)));
+		Carta foca=new Carta(6,jugarColor,CartaFactory.getCartaFactory().crearCarta(6));
 		ColaDelBar.getColaDelBar().addCarta(foca);
 		foca.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
