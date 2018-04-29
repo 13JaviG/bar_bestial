@@ -53,8 +53,10 @@ public class ListaCartas {
 	public void intercambiar(Carta pCarta1, Carta pCarta2){
 		
 		Carta aux = pCarta1;
-		cartas.set(cartas.indexOf(pCarta1), pCarta2);
-		cartas.set(cartas.indexOf(pCarta2), aux);
+		int index1 = cartas.indexOf(pCarta1);
+		int index2 = cartas.indexOf(pCarta2);
+		cartas.set(index1, pCarta2);
+		cartas.set(index2, aux);
 		
 	}
 	
@@ -120,7 +122,7 @@ public class ListaCartas {
 		
 	}
 
-	public void reordenar() {
+	public void invertir() {
 		// TODO Auto-generated method stub
 		Collections.reverse(cartas);
 	}

@@ -42,6 +42,7 @@ public class ColaDelBar {
 	
 	public void invertirCola() {
 		// TODO implementar
+		susCartas.invertir();
 	}
 
 	public void hacerAnimaladasR() {
@@ -100,7 +101,7 @@ public class ColaDelBar {
 
 	public void reordenarCola() {
 		// TODO implementar
-		susCartas.reordenar();
+		
 		}
 
 
@@ -125,7 +126,7 @@ public class ColaDelBar {
 	 */
 	public Carta getCarta(int pPos) {
 		// TODO implementar
-		return null;
+		return susCartas.cartaIndex(pPos);
 	}
 	
 	/**
@@ -239,15 +240,16 @@ public class ColaDelBar {
 	public void primeraPosicionNoCuatros() {
 		// TODO implementar
 		boolean noLeon=true;
-		for(int i=0;i<=susCartas.cuantasCartas()-1;i++) {
+		for(int i=0;i<susCartas.cuantasCartas()-1;i++) {
 			if(susCartas.cartaIndex(i).getNum()==12){
 				susCartas.rmvCarta(susCartas.cuantasCartas());
 				noLeon=false;
 			}
 		}
+		System.out.println(noLeon);
 		if(noLeon) {
-			susCartas.intercambiar(susCartas.cartaIndex(0), susCartas.cartaIndex(susCartas.cuantasCartas()-1));
-			for(int i=0;i<=susCartas.cuantasCartas();i++) {
+			susCartas.intercambiar(susCartas.cartaIndex(susCartas.cuantasCartas()-1), susCartas.cartaIndex(0));;
+			for(int i=0;i<=susCartas.cuantasCartas()-1;i++) {
 				if(susCartas.cartaIndex(i).getNum()==4) {susCartas.rmvCarta(i);}
 			}
 		}
