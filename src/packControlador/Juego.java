@@ -81,10 +81,9 @@ public class Juego {
 	 */
 	private void rellenarMazos() throws Exception {
 		for(int i = 1; i <= 12; i++) {
-			Animal animJug = CartaFactory.getCartaFactory().crearCarta(i);
-			jugador.addCarta(new Carta(i, jugadorColor, animJug));
-			Animal animCPU = CartaFactory.getCartaFactory().crearCarta(i);
-			cpu.addCarta(new Carta(i, cpuColor, animCPU));
+			Animal anim = CartaFactory.getCartaFactory().crearCarta(i);
+			jugador.addCarta(new Carta(i, jugadorColor, anim));
+			cpu.addCarta(new Carta(i, cpuColor, anim));
 		}
 		jugador.barajar();
 		cpu.barajar();
