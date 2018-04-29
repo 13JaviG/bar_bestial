@@ -7,6 +7,7 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
+import packModelo.Animal;
 import packModelo.CPU;
 import packModelo.Carta;
 import packModelo.CartaFactory;
@@ -90,8 +91,9 @@ public class Juego {
 	 */
 	private void rellenarMazos() throws Exception {
 		for(int i = 1; i <= 12; i++) {
-			jugador.addCarta(new Carta(i, jugadorColor));
-			cpu.addCarta(new Carta(i, cpuColor));
+			Animal anim = CartaFactory.getCartaFactory().crearCarta(i);
+			jugador.addCarta(new Carta(i, jugadorColor, anim));
+			cpu.addCarta(new Carta(i, cpuColor, anim));
 		}
 		jugador.barajar();
 		cpu.barajar();

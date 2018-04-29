@@ -13,10 +13,10 @@ public class Carta {
 	private EnumColor color;
 	private Animal animal;
 	
-	public Carta(int pNum, EnumColor pColor) throws Exception {
+	public Carta(int pNum, EnumColor pColor, Animal pAnim) throws Exception {
 		num = pNum;
 		color = pColor;
-		animal = CartaFactory.getCartaFactory().crearCarta(pNum);
+		animal = pAnim;
 	}
 	
 	public int getNum(){
