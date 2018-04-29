@@ -14,6 +14,7 @@ import packModelo.EnumColor;
 
 class TestAnimaladas {
 	EnumColor jugarColor = Juego.jugadorColor;
+	EnumColor cpuColor = Juego.cpuColor;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -114,4 +115,24 @@ class TestAnimaladas {
 		assertEquals(jirafa,ColaDelBar.getColaDelBar().getCarta(3));
 	}
 
+	@Test
+	void testMono() throws Exception {
+		System.out.println("\nMono");
+		Carta mono = new Carta(4,jugarColor,CartaFactory.getCartaFactory().crearCarta(4));
+		Carta mofeta = new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1));
+		ColaDelBar.getColaDelBar().addCarta(mofeta);
+		Carta monoCPU = new Carta(4,cpuColor, CartaFactory.getCartaFactory().crearCarta(4));
+		ColaDelBar.getColaDelBar().addCarta(monoCPU);
+		ColaDelBar.getColaDelBar().addCarta(new Carta(10,jugarColor, CartaFactory.getCartaFactory().crearCarta(10)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(11,jugarColor, CartaFactory.getCartaFactory().crearCarta(11)));
+		ColaDelBar.getColaDelBar().addCarta(mono);
+		System.out.println("Estado del bar antes del salto");
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		mono.hacerAnimalada();
+		System.out.println("Estado del bar después del salto");
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		assertEquals(mono,ColaDelBar.getColaDelBar().getCarta(0));
+		assertEquals(monoCPU,ColaDelBar.getColaDelBar().getCarta(1));
+		assertEquals(mofeta,ColaDelBar.getColaDelBar().getCarta(2));
+	}
 }
