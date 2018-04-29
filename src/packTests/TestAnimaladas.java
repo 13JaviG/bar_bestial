@@ -6,13 +6,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import packControlador.Juego;
 import packModelo.Carta;
 import packModelo.CartaFactory;
 import packModelo.ColaDelBar;
 import packModelo.EnumColor;
 
 class TestAnimaladas {
-	EnumColor jugarColor=EnumColor.AZUL;
+	EnumColor jugarColor = Juego.jugadorColor;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -72,5 +73,19 @@ class TestAnimaladas {
 		camaleon.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(pruebaCSerp,ColaDelBar.getColaDelBar().getCarta(0));
+	}
+
+	@Test
+	void testCanguro() throws Exception {
+		System.out.println("\nCanguro");
+		Carta canguro = new Carta(3,jugarColor,CartaFactory.getCartaFactory().crearCarta(3));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
+		ColaDelBar.getColaDelBar().addCarta(canguro);
+		System.out.println("Estado del bar antes del salto");
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		canguro.hacerAnimalada();
+		System.out.println("Estado del bar después del salto");
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 	}
 }
