@@ -55,7 +55,6 @@ public class BarBestial {
 	}
 
 	public int cuantasCartas() {
-		// TODO Auto-generated method stub
 		return susCartas.cuantasCartas();
 	}
 

@@ -42,16 +42,6 @@ public class Juego {
 		return miJuego;
 	}
 	
-	/**
-	 * Hace que la CPU juegue.
-	 */
-	private void jugarCPU() {
-		Random  rng=new Random();
-		Carta cartaCPU = cpu.jugar(rng.nextInt(cpu.numCartasMano()));
-		ColaDelBar.getColaDelBar().addCarta(cartaCPU);
-		cartaCPU.hacerAnimalada();
-		cpu.cogerCarta();
-	}
 	
 	/**
 	 * Compara las puntuaciones para saber si el jugador humano ha ganado.
@@ -68,7 +58,7 @@ public class Juego {
 	 */
 	public boolean esFinDelJuego() {
 		
-		return !(jugador.tieneCartas() || cpu.tieneCartas());
+		return (!jugador.tieneCartas() || !cpu.tieneCartas());
 	}
 	
 	/**
@@ -91,9 +81,10 @@ public class Juego {
 	 */
 	private void rellenarMazos() throws Exception {
 		for(int i = 1; i <= 12; i++) {
-			Animal anim = CartaFactory.getCartaFactory().crearCarta(i);
-			jugador.addCarta(new Carta(i, jugadorColor, anim));
-			cpu.addCarta(new Carta(i, cpuColor, anim));
+			Animal animJug = CartaFactory.getCartaFactory().crearCarta(i);
+			jugador.addCarta(new Carta(i, jugadorColor, animJug));
+			Animal animCPU = CartaFactory.getCartaFactory().crearCarta(i);
+			cpu.addCarta(new Carta(i, cpuColor, animCPU));
 		}
 		jugador.barajar();
 		cpu.barajar();
@@ -178,6 +169,26 @@ public class Juego {
 	 * hace su animalada y la animalada
 	 * */
 	private void jugarJugador() {
-		
+		Random  rng=new Random();
+		int numCartas = jugador.numCartasMano();
+		// TODO coge random de momento para hacer tests
+		Carta cartaJugador = jugador.jugar(rng.nextInt(numCartas));
+		ColaDelBar.getColaDelBar().addCarta(cartaJugador);
+		// TODO si la carta requiere input pedirlo
+		cartaJugador.hacerAnimalada();
+		jugador.cogerCarta();
+	}
+
+	/**
+	 * Hace que la CPU juegue.
+	 */
+	private void jugarCPU() {
+		Random  rng=new Random();
+		int numCartas = cpu.numCartasMano();
+		Carta cartaCPU = cpu.jugar(rng.nextInt(numCartas));
+		ColaDelBar.getColaDelBar().addCarta(cartaCPU);
+		// TODO si la carta requiere input darle uno aleatorio
+		cartaCPU.hacerAnimalada();
+		cpu.cogerCarta();
 	}
 }

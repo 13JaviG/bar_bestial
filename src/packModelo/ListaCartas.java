@@ -28,6 +28,14 @@ public class ListaCartas {
 	public void addCarta(Carta pCarta) {
 		cartas.add(pCarta);
 	}
+
+	/**
+	 * A�ade una carta a la lista en el indice indicado
+	 * @param pCarta
+	 */
+	public void addCarta(int pIndice, Carta pCarta) {
+		cartas.add(pIndice, pCarta);
+	}
 	
 	/**
 	 * Elimina una carta de la lista.
@@ -51,7 +59,6 @@ public class ListaCartas {
 	 * Cartas a intercambiar
 	 */
 	public void intercambiar(Carta pCarta1, Carta pCarta2){
-		
 		Carta aux = pCarta1;
 		cartas.set(cartas.indexOf(pCarta1), pCarta2);
 		cartas.set(cartas.indexOf(pCarta2), aux);

@@ -3,6 +3,8 @@
  */
 package packModelo;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.ListIterator;
@@ -101,7 +103,7 @@ public class ColaDelBar {
 	public void reordenarCola() {
 		// TODO implementar
 		susCartas.reordenar();
-		}
+	}
 
 
 	/**
@@ -129,7 +131,7 @@ public class ColaDelBar {
 	}
 	
 	/**
-	 * M�todo usado para avanzar tanto si es una Jirafa como si es un Hipop�tamo
+	 * M�todo usado para avanzar el Hipop�tamo
 	 * @param pCarta
 	 * La carta que hace la animalada, para saber por d�nde empezar
 	 */
@@ -167,7 +169,7 @@ public class ColaDelBar {
 	}
 	
 	/**
-	 * Metedo que imita la animalada de otro animal excepto la del camaleon
+	 * Metodo que imita la animalada de otro animal excepto la del camaleon
 	 */
 	public void clonar(Carta pCarta) {
 		Carta temp=null;
@@ -231,10 +233,112 @@ public class ColaDelBar {
 		
 
 
-	public void adelantarse() {
-		// TODO implementar
+	/**
+	 * Metodo que adelanta una carta sin condiciones (canguro).
+	 * @param pCarta
+	 */
+	public void avanzarUna(Carta pCarta) {
+		int indiceCarta = susCartas.indexCarta(pCarta);
+		if (indiceCarta > 0) {
+			int indiceAnterior = indiceCarta - 1;
+			Carta cartaAnterior = susCartas.cartaIndex(indiceAnterior);
+			susCartas.intercambiar(pCarta, cartaAnterior);
+		} else {
+			System.out.println("No puede adelantarse.");
+		}
 		
 	}
+
+	/**
+	 * Metodo que adelanta una carta si la carta que intenta avanzar es mayor (jirafa).
+	 * @param pCarta
+	 */
+	public void avanzarUnaSiMayor(Carta pCarta) {
+		int indiceCarta = susCartas.indexCarta(pCarta);
+		if (indiceCarta > 0) {
+			int indiceAnterior = indiceCarta - 1;
+			Carta cartaAnterior = susCartas.cartaIndex(indiceAnterior);
+			if (cartaAnterior.getNum() < pCarta.getNum()) {
+				susCartas.intercambiar(pCarta, cartaAnterior);
+			} else {
+				System.out.println("No puede adelantarse.");
+			}
+		} else {
+			System.out.println("No puede adelantarse.");
+		}
+		
+	}
+	
+	/**
+	 * Elimina de la lista todas las cartas que coincidan con el numero dado.
+	 * El mono por ejemplo tiene que eliminar los hipopotamos y cocodrilos.
+	 * @param pNum
+	 */
+	public void rmvTodasConNum(int pNum) {
+		Iterator<Carta> it = susCartas.getIterator();
+		ArrayList<Carta> cualesEliminar = new ArrayList<Carta>();
+		while (it.hasNext()) {
+			Carta cartaActual = it.next();
+			if (cartaActual.getNum() == pNum) {
+				cualesEliminar.add(cartaActual);
+			}
+		}
+		
+		Iterator<Carta> itEliminar = cualesEliminar.iterator();
+		while (itEliminar.hasNext()) {
+			Carta cartaActual = itEliminar.next();
+			susCartas.rmvCarta(cartaActual);
+			EsLoQueHay.getEsLoQueHay().addCarta(cartaActual);
+		}
+
+	}
+	
+	/**
+	 * Pone la carta dada al principio de la lista
+	 * @param pCarta
+	 */
+	public void ponerPrimera(Carta pCarta) {
+		susCartas.rmvCarta(pCarta);
+		susCartas.addCarta(0, pCarta);
+	}
+	
+	/**
+	 * Pone la carta dada en el indice indicado.
+	 * @param pCarta
+	 */
+	public void ponerEnPos(int pIndice, Carta pCarta) {
+		susCartas.rmvCarta(pCarta);
+		susCartas.addCarta(pIndice, pCarta);
+	}
+	
+	/**
+	 * Avanza al principio todas las que tengan el numero indicado en el orden que las encuentra.
+	 * @param pNum
+	 */
+	public void avanzarTodasConNum(int pNum) {
+		ArrayList<Carta> paraAvanzar = new ArrayList<Carta>();
+		Iterator<Carta> it = susCartas.getIterator();
+		while (it.hasNext()) {
+			Carta cartaActual = it.next();
+			if (cartaActual.getNum() == pNum) {
+				paraAvanzar.add(cartaActual);
+			}
+		}
+
+		int cuantasAvanzar = paraAvanzar.size();
+		System.out.println("Al principio el tamaño es " + paraAvanzar.size());
+		int contador = 0;
+		while (contador < cuantasAvanzar) {
+			System.out.println("Contador " + contador);
+			System.out.println("CuantasAvanzar " + cuantasAvanzar);
+			Carta carta = paraAvanzar.remove(0);
+			System.out.println("Despues el tamaño es " + paraAvanzar.size());
+			ponerEnPos(contador, carta);
+			contador++;
+		}
+	}
+	
+	
 
 	public void primeraPosicionNoCuatros() {
 		// TODO implementar
@@ -266,7 +370,6 @@ public class ColaDelBar {
 	}
 
 	public int cuantasHay() {
-		// TODO Auto-generated method stub
 		return susCartas.cuantasCartas();
 	}
 

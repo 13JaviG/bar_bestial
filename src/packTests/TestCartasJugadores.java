@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import packControlador.Juego;
 
 /**
- * Librería usada: jUnit 5
+ * Librerï¿½a usada: jUnit 5
  * 
  * Tests para las cartas que tienen los jugadores.
  */

@@ -16,7 +16,7 @@ public class Jirafa extends Animal implements IRecurrente {
 	
 	public void hacerAnimalada(Carta pCarta)
 	{
-		ColaDelBar.getColaDelBar().avanzaSiMayor(pCarta);
+		ColaDelBar.getColaDelBar().avanzarUnaSiMayor(pCarta);
 	}
 	/**
 	 * Metodo que ejecuta la accion del animal para los que implementan

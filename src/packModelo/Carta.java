@@ -23,7 +23,9 @@ public class Carta {
 		return num;
 	}
 	
-	public void hacerAnimalada(Carta this) {
+	// TODO no se para que necesita como parametro a sí mismo, lo quito
+	public void hacerAnimalada() {
+//	public void hacerAnimalada(Carta this) {
 		animal.hacerAnimalada(this);
 		
 	}
