@@ -24,7 +24,7 @@ public class Canguro extends Animal {
 			numSaltos = in.nextInt();
 		}
 		
-		for (int i = 0; i <= numSaltos; i++) {
+		for (int i = 0; i < numSaltos; i++) {
 			ColaDelBar.getColaDelBar().avanzarUna(pCarta);
 		}
 	}
