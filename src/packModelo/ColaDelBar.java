@@ -8,7 +8,10 @@ import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.Random;
 import java.util.Scanner;
+
+import packControlador.Juego;
 
 /**
  * Representa el Bar.
@@ -48,7 +51,13 @@ public class ColaDelBar {
 	}
 
 	public void hacerAnimaladasR() {
-		// TODO implementar
+		Iterator<Carta> itr=susCartas.getIterator();
+		while(itr.hasNext()) {
+			Carta temp=itr.next();
+			if(temp.getNum()==8 || temp.getNum()==10 || temp.getNum()==11) {
+				temp.hacerAnimalada();
+			}
+		}
 		if (estaLlena()) {colaLlena();}		
 	}
 	
@@ -173,27 +182,64 @@ public class ColaDelBar {
 	 */
 	public void clonar(Carta pCarta) {
 		Carta temp=null;
+		int opcion = 0;
 		Scanner teclado=new Scanner(System.in);
 		boolean avanza=false;
-		while(!avanza) {
-			System.out.println("Campo:");
-			imprimirColaDelBar();
-			try{
-				System.out.println("introduce la posicion de la carta a copiar");
-				temp=getCarta(teclado.nextInt()-1);
-				switch (temp.getNum()) {
+		if(pCarta.getColor()==Juego.jugadorColor) {
+			while(!avanza) {
+				System.out.println("Campo:");
+				imprimirColaDelBar();
+				try{
+					System.out.println("introduce la posicion de la carta a copiar");
+					temp=getCarta(teclado.nextInt()-1);
+					avanza=true;
+					opcion=temp.getNum();
+				}catch(InputMismatchException e) {
+					System.out.println("introduzca un numero");
+					teclado.nextLine();
+				}catch(IndexOutOfBoundsException e) {
+					System.out.println("introduzca una posicion valida max "+cuantasHay());
+				}
+			}
+		}else {
+			Random rng=new Random();
+			opcion=rng.nextInt(susCartas.cuantasCartas());
+		}
+			
+		switch (opcion) {
 				case (1):
-					
+					rmvEspMasAltas();
 					break;
 				case (2):
 					
 					break;
 					
 				case (3):
-					
+					if (pCarta.getColor() == Juego.jugadorColor) {
+						Scanner in = new Scanner(System.in);
+						int numSaltos = 0;
+						while ((numSaltos != 1) && (numSaltos != 2)) {
+							System.out.println("Cuantas cartas salta el canguro? (1 o 2)");
+							numSaltos = in.nextInt();
+						}
+						
+						for (int i = 0; i < numSaltos; i++) {
+							ColaDelBar.getColaDelBar().avanzarUna(pCarta);
+						}
+					} else {
+						Random rand = new Random();
+						int numSaltos = rand.nextInt(2) + 1;
+						
+						for (int i = 0; i < numSaltos; i++) {
+							ColaDelBar.getColaDelBar().avanzarUna(pCarta);
+						}
+					}
 					break;
 				case (4):
-					
+					rmvTodasConNum(10); // cocodrilos
+					rmvTodasConNum(11); // hipopotamos
+					ponerPrimera(pCarta);
+					avanzarTodasConNum(pCarta.getNum());
 					break;
 				case (5):
 					
@@ -205,7 +251,7 @@ public class ColaDelBar {
 					
 					break;
 				case (8):
-					
+					avanzarUnaSiMayor(pCarta);
 					break;
 				case (9):
 					ordenarDesc();					
@@ -214,7 +260,7 @@ public class ColaDelBar {
 					avanzarEliminando(pCarta);
 					break;
 				case (11):
-					
+					avanzaSiMayor(pCarta);
 					break;
 				case (12):
 					primeraPosicionNoCuatros();
@@ -223,15 +269,9 @@ public class ColaDelBar {
 					break;
 					
 				}
-				avanza=true;
-			}catch(InputMismatchException e) {
-				System.out.println("introduzca un numero");
-				teclado.nextLine();
-			}catch(IndexOutOfBoundsException e) {
-				System.out.println("introduzca una posicion valida max "+cuantasHay());
-			}
+			
 		}
-	}
+	
 
 	public void ordenarDesc() {
 		// TODO implementar
@@ -380,12 +420,12 @@ public class ColaDelBar {
 		boolean noLeon=true;
 		for(int i=0;i<susCartas.cuantasCartas()-1;i++) {
 			if(susCartas.cartaIndex(i).getNum()==12){
-				susCartas.rmvCarta(susCartas.cuantasCartas());
+				susCartas.rmvCarta(susCartas.cuantasCartas()-1);
 				noLeon=false;
 			}
 		}
 		if(noLeon) {
-			susCartas.intercambiar(susCartas.cartaIndex(susCartas.cuantasCartas()-1), susCartas.cartaIndex(0));;
+			ponerPrimera(susCartas.cartaIndex(susCartas.cuantasCartas()-1));
 			for(int i=0;i<=susCartas.cuantasCartas()-1;i++) {
 				if(susCartas.cartaIndex(i).getNum()==4) {susCartas.rmvCarta(i);}
 			}

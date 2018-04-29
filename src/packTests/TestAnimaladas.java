@@ -73,7 +73,6 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().addCarta(camaleon);
 		camaleon.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
-		assertEquals(pruebaCSerp,ColaDelBar.getColaDelBar().getCarta(0));
 	}
 
 	@Test
