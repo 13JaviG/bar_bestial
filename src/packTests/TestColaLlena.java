@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import packModelo.Animal;
 import packModelo.BarBestial;
 import packModelo.Carta;
 import packModelo.CartaFactory;
@@ -18,7 +19,8 @@ class TestColaLlena {
 	@BeforeEach
 	void setUp() throws Exception {
 		for (int i = 1; i <= 5; i++) {
-			ColaDelBar.getColaDelBar().addCarta(new Carta(i, EnumColor.AZUL));
+			Animal anim = CartaFactory.getCartaFactory().crearCarta(i);
+			ColaDelBar.getColaDelBar().addCarta(new Carta(i, EnumColor.AZUL, anim));
 		}
 	}
 
