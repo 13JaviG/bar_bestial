@@ -3,10 +3,6 @@
  */
 package packModelo;
 
-import java.util.InputMismatchException;
-import java.util.Iterator;
-import java.util.Scanner;
-
 /**
  * Representa a un jugador.
  */

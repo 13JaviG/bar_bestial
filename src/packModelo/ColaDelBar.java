@@ -4,10 +4,8 @@
 package packModelo;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.Scanner;
 
 /**
@@ -112,7 +110,10 @@ public class ColaDelBar {
 	 * @return la carta eliminada.
 	 */
 	public Carta rmvCarta(int pIndex) {
-		return susCartas.rmvCarta(pIndex);
+		if(pIndex  != -1 && pIndex < susCartas.cuantasCartas()){
+			susCartas.rmvCarta(pIndex);
+		}
+		return susCartas.cartaIndex(0);
 	}
 
 	public void saltarPosicion(int pPos, Carta pCarta) {
@@ -231,6 +232,7 @@ public class ColaDelBar {
 				System.out.println("introduzca una posicion valida max "+cuantasHay());
 			}
 		}
+		teclado.close();
 	}
 
 	public void ordenarDesc() {

@@ -30,6 +30,7 @@ public class Canguro extends Animal {
 			for (int i = 0; i < numSaltos; i++) {
 				ColaDelBar.getColaDelBar().avanzarUna(pCarta);
 			}
+			in.close();
 		} else {
 			Random rand = new Random();
 			int numSaltos = rand.nextInt(2) + 1;
@@ -38,6 +39,7 @@ public class Canguro extends Animal {
 				ColaDelBar.getColaDelBar().avanzarUna(pCarta);
 			}
 		}
+		
 	}
 
 }
