@@ -169,6 +169,7 @@ public class Juego {
 	 * Hace que la CPU juegue.
 	 */
 	private void jugarCPU() {
+		System.out.println("Turno de CPU.");
 		Random  rng=new Random();
 		int numCartas = cpu.numCartasMano();
 		Carta cartaCPU = cpu.jugar(rng.nextInt(numCartas));
