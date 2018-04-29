@@ -182,6 +182,45 @@ public class ColaDelBar {
 				temp=getCarta(teclado.nextInt()-1);
 				switch (temp.getNum()) {
 				case (1):
+					
+					break;
+				case (2):
+					
+					break;
+					
+				case (3):
+					
+					break;
+				case (4):
+					
+					break;
+				case (5):
+					
+					break;
+				case (6):
+					invertirCola();
+					break;
+				case (7):
+					
+					break;
+				case (8):
+					
+					break;
+				case (9):
+					ordenarDesc();					
+					break;
+				case (10):
+					avanzarEliminando(pCarta);
+					break;
+				case (11):
+					
+					break;
+				case (12):
+					primeraPosicionNoCuatros();
+					break;
+				default:
+					break;
+					
 				}
 				avanza=true;
 			}catch(InputMismatchException e) {
@@ -246,7 +285,6 @@ public class ColaDelBar {
 				noLeon=false;
 			}
 		}
-		System.out.println(noLeon);
 		if(noLeon) {
 			susCartas.intercambiar(susCartas.cartaIndex(susCartas.cuantasCartas()-1), susCartas.cartaIndex(0));;
 			for(int i=0;i<=susCartas.cuantasCartas()-1;i++) {
