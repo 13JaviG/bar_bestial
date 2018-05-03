@@ -4,10 +4,7 @@
 package packMain;
 
 import packControlador.Juego;
-import packModelo.Carta;
-import packModelo.CartaFactory;
-import packModelo.EnumColor;
-import packModelo.animales.Cocodrilo;
+
 
 /**
  * Clase donde iniciar el juego.
