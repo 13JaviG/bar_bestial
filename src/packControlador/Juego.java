@@ -227,7 +227,7 @@ public class Juego {
 				System.out.println("introduzca una posicion valida max "+jugador.numCartasMano());
 			}
 		}
-		teclado.close();
+		
 	}
 }
 

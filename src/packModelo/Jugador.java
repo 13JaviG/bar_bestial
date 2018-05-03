@@ -68,7 +68,7 @@ public class Jugador {
 	public Carta jugar(int pIndCarta) {
 		Carta temp;
 		temp=suMano.rmvCarta(pIndCarta);
-		suMano.rmvCarta(temp);
+		//suMano.rmvCarta(temp);
 		return temp;
 	}
 	
