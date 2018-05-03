@@ -205,6 +205,8 @@ public class ColaDelBar {
 			Random rng=new Random();
 			opcion=rng.nextInt(susCartas.cuantasCartas());
 		}
+		
+//		CartaFactory.getCartaFactory().crearCarta(opcion).hacerAnimalada(pCarta);
 			
 		switch (opcion) {
 				case (1):
