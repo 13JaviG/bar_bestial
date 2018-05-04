@@ -49,12 +49,11 @@ public class ColaDelBar {
 	}
 
 	public void hacerAnimaladasR() {
+		// TODO no se si ha cambiado el orden en la cola
 		Iterator<Carta> itr=susCartas.getIterator();
 		while(itr.hasNext()) {
 			Carta temp=itr.next();
-			if(temp.getNum()==8 || temp.getNum()==10 || temp.getNum()==11) {
-				temp.hacerAnimalada();
-			}
+			temp.recurrir();
 		}
 		if (estaLlena()) {colaLlena();}		
 	}
@@ -177,105 +176,6 @@ public class ColaDelBar {
 			i--;
 		}
 	}
-	
-	/**
-	 * Metodo que imita la animalada de otro animal excepto la del camaleon
-	 */
-	public void clonar(Carta pCarta) {
-		Carta temp=null;
-		int opcion = 0;
-		Scanner teclado=new Scanner(System.in);
-		boolean avanza=false;
-		if(pCarta.getColor()==Juego.jugadorColor) {
-			while(!avanza) {
-				System.out.println("Campo:");
-				imprimirColaDelBar();
-				try{
-					System.out.println("introduce la posicion de la carta a copiar");
-					temp=getCarta(teclado.nextInt()-1);
-					avanza=true;
-					opcion=temp.getNum();
-				}catch(InputMismatchException e) {
-					System.out.println("introduzca un numero");
-					teclado.nextLine();
-				}catch(IndexOutOfBoundsException e) {
-					System.out.println("introduzca una posicion valida max "+cuantasHay());
-				}
-			}
-		}else {
-			Random rng=new Random();
-			opcion=rng.nextInt(susCartas.cuantasCartas());
-		}
-		
-//		CartaFactory.getCartaFactory().crearCarta(opcion).hacerAnimalada(pCarta);
-			
-		switch (opcion) {
-				case (1):
-					rmvEspMasAltas();
-					break;
-				case (2):
-					
-					break;
-					
-				case (3):
-					if (pCarta.getColor() == Juego.jugadorColor) {
-						Scanner in = new Scanner(System.in);
-						int numSaltos = 0;
-						while ((numSaltos != 1) && (numSaltos != 2)) {
-							System.out.println("Cuantas cartas salta el canguro? (1 o 2)");
-							numSaltos = in.nextInt();
-						}
-						
-						for (int i = 0; i < numSaltos; i++) {
-							ColaDelBar.getColaDelBar().avanzarUna(pCarta);
-						}
-					
-					} else {
-						Random rand = new Random();
-						int numSaltos = rand.nextInt(2) + 1;
-						
-						for (int i = 0; i < numSaltos; i++) {
-							ColaDelBar.getColaDelBar().avanzarUna(pCarta);
-						}
-					}
-					break;
-				case (4):
-					rmvTodasConNum(10); // cocodrilos
-					rmvTodasConNum(11); // hipopotamos
-					ponerPrimera(pCarta);
-					avanzarTodasConNum(pCarta.getNum());
-					break;
-				case (5):
-					
-					break;
-				case (6):
-					invertirCola();
-					break;
-				case (7):
-					
-					break;
-				case (8):
-					avanzarUnaSiMayor(pCarta);
-					break;
-				case (9):
-					ordenarDesc();					
-					break;
-				case (10):
-					avanzarEliminando(pCarta);
-					break;
-				case (11):
-					avanzaSiMayor(pCarta);
-					break;
-				case (12):
-					primeraPosicionNoCuatros();
-					break;
-				default:
-					break;
-					
-				}
-		}
-		
-
 	
 
 	public void ordenarDesc() {

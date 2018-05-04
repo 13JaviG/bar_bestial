@@ -30,6 +30,12 @@ public class Carta {
 		
 	}
 	
+	public void recurrir () {
+		if (animal instanceof IRecurrente) {
+			((IRecurrente) animal).recurrir(this);
+		}
+	}
+	
 	/**
 	 * Devuelve un string con la informaci�n de la carta.
 	 */
