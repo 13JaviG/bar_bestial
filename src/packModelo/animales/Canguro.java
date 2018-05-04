@@ -26,7 +26,7 @@ public class Canguro extends Animal {
 				System.out.println("Cuantas cartas salta el canguro? (1 o 2)");
 				numSaltos = in.nextInt();
 			}
-			
+
 			for (int i = 0; i < numSaltos; i++) {
 				ColaDelBar.getColaDelBar().avanzarUna(pCarta);
 			}
