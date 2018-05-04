@@ -14,7 +14,6 @@ import packModelo.CartaFactory;
 import packModelo.ColaDelBar;
 import packModelo.EnumColor;
 import packModelo.Jugador;
-import packModelo.ListaCartas;
 
 /**
  * Representa el Juego Bar Bestial.
@@ -228,6 +227,7 @@ public class Juego {
 				System.out.println("introduzca una posicion valida max "+jugador.numCartasMano());
 			}
 		}
+		
 	}
 }
 

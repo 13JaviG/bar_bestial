@@ -3,10 +3,6 @@
  */
 package packModelo;
 
-import java.util.InputMismatchException;
-import java.util.Iterator;
-import java.util.Scanner;
-
 /**
  * Representa a un jugador.
  */
@@ -72,7 +68,7 @@ public class Jugador {
 	public Carta jugar(int pIndCarta) {
 		Carta temp;
 		temp=suMano.rmvCarta(pIndCarta);
-		suMano.rmvCarta(temp);
+		//suMano.rmvCarta(temp);
 		return temp;
 	}
 	
