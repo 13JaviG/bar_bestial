@@ -3,6 +3,8 @@
  */
 package packModelo;
 
+import org.json.JSONObject;
+
 /**
  * Representa una carta en el juego.
  *
@@ -23,9 +25,7 @@ public class Carta {
 		return num;
 	}
 	
-	// TODO no se para que necesita como parametro a sí mismo, lo quito
 	public void hacerAnimalada() {
-//	public void hacerAnimalada(Carta this) {
 		animal.hacerAnimalada(this);
 		
 	}
@@ -48,6 +48,18 @@ public class Carta {
 		result.append(" | Animal: ");
 		result.append(animal.getClass().getName());
 		return result.toString();
+	}
+	
+	/**
+	 * Devuelve un String en formato json de la carta.
+	 * @return
+	 */
+	public String toJson() {
+		JSONObject json = new JSONObject()
+				.put("numero", num)
+				.put("color", color.toString().toLowerCase())
+				.put("animal", animal.getClass().getSimpleName().toLowerCase());
+		return json.toString(2);
 	}
 
 	/**
