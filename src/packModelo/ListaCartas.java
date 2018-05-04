@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 /**
  * Representa una lista de cartas de animales.
  */
@@ -103,6 +106,27 @@ public class ListaCartas {
 			System.out.println(it.next().toString());
 		}
 	}
+	
+	/**
+	 * Crea un string en formato JSON de la lista de cartas.
+	 * @return
+	 */
+	public String toJson() {
+		JSONArray listaJson = new JSONArray();
+		Iterator<Carta> it = cartas.iterator();
+		int indice = 0;
+		while (it.hasNext()) {
+			JSONObject cartaActual = new JSONObject(it.next().toJson());
+			cartaActual.put("indice", indice);
+
+			listaJson.put(cartaActual);
+			indice++;
+		}
+		JSONObject resultado = new JSONObject();
+		resultado.put("cartas", listaJson);
+		return resultado.toString(2);
+	}
+	
 	/**
 	 * Devuelve el �ndice de una carta dada
 	 * @param pCarta
