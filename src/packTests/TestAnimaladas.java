@@ -18,12 +18,12 @@ class TestAnimaladas {
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		
+		ColaDelBar.getColaDelBar().vaciar();
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-		ColaDelBar.getColaDelBar().vaciar();
+		System.out.println("\n\n");
 	}
 
 	@Test
@@ -34,7 +34,9 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().addCarta(new Carta(4,jugarColor,CartaFactory.getCartaFactory().crearCarta(4)));
 		Carta leon=new Carta(12,jugarColor,CartaFactory.getCartaFactory().crearCarta(12));
 		ColaDelBar.getColaDelBar().addCarta(leon);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		leon.hacerAnimalada();
+		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(leon,ColaDelBar.getColaDelBar().getCarta(0));
 	}
@@ -46,7 +48,9 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().addCarta(new Carta(4,jugarColor,CartaFactory.getCartaFactory().crearCarta(4)));
 		Carta foca=new Carta(6,jugarColor,CartaFactory.getCartaFactory().crearCarta(6));
 		ColaDelBar.getColaDelBar().addCarta(foca);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		foca.hacerAnimalada();
+		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(foca,ColaDelBar.getColaDelBar().getCarta(0));
 	}
@@ -58,7 +62,9 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().addCarta(new Carta(4,jugarColor,CartaFactory.getCartaFactory().crearCarta(4)));
 		Carta serpiente=new Carta(9,jugarColor,CartaFactory.getCartaFactory().crearCarta(9));
 		ColaDelBar.getColaDelBar().addCarta(serpiente);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		serpiente.hacerAnimalada();
+		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(serpiente,ColaDelBar.getColaDelBar().getCarta(0));
 	}
@@ -70,6 +76,8 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
 		ColaDelBar.getColaDelBar().addCarta(pruebaCSerp);
 		Carta camaleon=new Carta(5,jugarColor,CartaFactory.getCartaFactory().crearCarta(5));
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().addCarta(camaleon);
 		camaleon.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
@@ -96,7 +104,9 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
 		ColaDelBar.getColaDelBar().addCarta(jirafa);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		jirafa.hacerAnimalada();
+		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(jirafa,ColaDelBar.getColaDelBar().getCarta(1));
 	}
@@ -104,11 +114,13 @@ class TestAnimaladas {
 	@Test
 	void testJirafaNoPuedePasar() throws Exception {
 		System.out.println("\nJirafa: sin poder pasar");
-		Carta jirafa = new Carta(3,jugarColor,CartaFactory.getCartaFactory().crearCarta(3));
+		Carta jirafa = new Carta(8,jugarColor,CartaFactory.getCartaFactory().crearCarta(8));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(8,jugarColor, CartaFactory.getCartaFactory().crearCarta(8)));
 		ColaDelBar.getColaDelBar().addCarta(jirafa);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		System.out.println("hace animalada");
 		jirafa.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(jirafa,ColaDelBar.getColaDelBar().getCarta(3));
@@ -137,25 +149,29 @@ class TestAnimaladas {
 	
 	@Test
 	void testHipopotamoPuedePasar() throws Exception {
-		System.out.println("\nHipopótamo: pudiendo pasar");
+		System.out.println("\nHipopï¿½tamo: pudiendo pasar");
 		Carta hipopotamo = new Carta(11,jugarColor,CartaFactory.getCartaFactory().crearCarta(11));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
 		ColaDelBar.getColaDelBar().addCarta(hipopotamo);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		hipopotamo.hacerAnimalada();
+		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(hipopotamo,ColaDelBar.getColaDelBar().getCarta(0));
 	}
 
 	@Test
 	void testHipopotamoNoPuedePasar() throws Exception {
-		System.out.println("\nHipopótamo: sin poder pasar");
+		System.out.println("\nHipopï¿½tamo: sin poder pasar");
 		Carta hipopotamo = new Carta(11,jugarColor,CartaFactory.getCartaFactory().crearCarta(11));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(7,jugarColor, CartaFactory.getCartaFactory().crearCarta(7)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
 		ColaDelBar.getColaDelBar().addCarta(hipopotamo);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		hipopotamo.hacerAnimalada();
+		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(hipopotamo,ColaDelBar.getColaDelBar().getCarta(2));
 	}
@@ -168,7 +184,9 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(5,jugarColor, CartaFactory.getCartaFactory().crearCarta(5)));
 		ColaDelBar.getColaDelBar().addCarta(cocodrilo);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		cocodrilo.hacerAnimalada();
+		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(cocodrilo,ColaDelBar.getColaDelBar().getCarta(0));
 		assertEquals(1,ColaDelBar.getColaDelBar().cuantasHay());
@@ -182,7 +200,9 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(9,jugarColor, CartaFactory.getCartaFactory().crearCarta(9)));
 		ColaDelBar.getColaDelBar().addCarta(cocodrilo);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		cocodrilo.hacerAnimalada();
+		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(cocodrilo,ColaDelBar.getColaDelBar().getCarta(1));
 		assertEquals(2,ColaDelBar.getColaDelBar().cuantasHay());
@@ -196,7 +216,9 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().addCarta(new Carta(2,jugarColor, CartaFactory.getCartaFactory().crearCarta(2)));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(9,jugarColor, CartaFactory.getCartaFactory().crearCarta(9)));
 		ColaDelBar.getColaDelBar().addCarta(mofeta);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		mofeta.hacerAnimalada();
+		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(mofeta,ColaDelBar.getColaDelBar().getCarta(1));
 		assertEquals(2,ColaDelBar.getColaDelBar().cuantasHay());
@@ -208,6 +230,8 @@ class TestAnimaladas {
 		Carta mofeta = new Carta(1,jugarColor,CartaFactory.getCartaFactory().crearCarta(1));
 		ColaDelBar.getColaDelBar().addCarta(new Carta(11,jugarColor, CartaFactory.getCartaFactory().crearCarta(11)));
 		ColaDelBar.getColaDelBar().addCarta(mofeta);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		System.out.println("hace animalada");
 		mofeta.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(null,ColaDelBar.getColaDelBar().getCarta(0));
@@ -219,6 +243,8 @@ class TestAnimaladas {
 		System.out.println("\nMofeta: ");
 		Carta mofeta = new Carta(1,jugarColor,CartaFactory.getCartaFactory().crearCarta(1));
 		ColaDelBar.getColaDelBar().addCarta(mofeta);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		System.out.println("hace animalada");
 		mofeta.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(null,ColaDelBar.getColaDelBar().getCarta(0));
@@ -234,6 +260,8 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().addCarta(new Carta(9,jugarColor, CartaFactory.getCartaFactory().crearCarta(9)));
 		int valorAnt = ColaDelBar.getColaDelBar().cuantasHay();
 		ColaDelBar.getColaDelBar().addCarta(loro);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		System.out.println("hace animalada");
 		loro.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(valorAnt,ColaDelBar.getColaDelBar().cuantasHay());
