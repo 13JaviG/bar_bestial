@@ -128,5 +128,13 @@ public class Jugador {
 	{
 		return suMazo.cuantasCartas();
 	}
+	
+	/**
+	 * Devuelve un String en formato Json de su mano.
+	 * @return
+	 */
+	public String manoToJson() {
+		return suMano.toJson();
+	}
 
 }

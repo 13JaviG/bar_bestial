@@ -352,5 +352,13 @@ public class ColaDelBar {
 	public int cuantasHay() {
 		return susCartas.cuantasCartas();
 	}
+	
+	/**
+	 * Devuelve un String en formato JSON.
+	 * @return
+	 */
+	public String toJson() {
+		return susCartas.toJson();
+	}
 
 }
