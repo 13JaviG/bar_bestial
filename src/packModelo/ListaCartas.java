@@ -124,6 +124,7 @@ public class ListaCartas {
 		}
 		JSONObject resultado = new JSONObject();
 		resultado.put("cartas", listaJson);
+		resultado.put("cuantas", this.cuantasCartas());
 		return resultado.toString(2);
 	}
 	
@@ -167,4 +168,5 @@ public class ListaCartas {
 		// TODO Auto-generated method stub
 		Collections.reverse(cartas);
 	}
-	}
+
+}

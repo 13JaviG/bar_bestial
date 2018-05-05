@@ -9,6 +9,8 @@ import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
+import org.json.JSONObject;
+
 import packControlador.Juego;
 
 /**
@@ -17,8 +19,13 @@ import packControlador.Juego;
 public class ColaDelBar {
 	
 	private static ColaDelBar miColaDelBar;
-	
 	private ListaCartas susCartas;
+	
+	/**
+	 * Un boolean que indica si la foca ha intercambiado la puerta, util para la interfaz.
+	 */
+	private boolean entradaIntercambiada = false;
+	
 	
 	private ColaDelBar() {
 		susCartas=new ListaCartas();
@@ -29,6 +36,13 @@ public class ColaDelBar {
 			miColaDelBar = new ColaDelBar();
 		}
 		return miColaDelBar;
+	}
+
+	/**
+	 * Indica que se ha intercambiado la puerta.
+	 */
+	public void intercambiarEntrada() {
+		entradaIntercambiada = !entradaIntercambiada;
 	}
 	
 	/**
@@ -339,7 +353,6 @@ public class ColaDelBar {
 	}
 
 	public void vaciar() {
-		// TODO Auto-generated method stub
 		susCartas.vaciar();
 	}
 	/**
@@ -358,7 +371,9 @@ public class ColaDelBar {
 	 * @return
 	 */
 	public String toJson() {
-		return susCartas.toJson();
+		JSONObject json = new JSONObject(susCartas.toJson());
+		json.put("entrada_intercambiada", entradaIntercambiada);
+		return json.toString();
 	}
 
 }

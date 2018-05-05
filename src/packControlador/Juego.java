@@ -3,27 +3,36 @@
  */
 package packControlador;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Scanner;
 
+import org.json.JSONObject;
+
 import packModelo.Animal;
+import packModelo.BarBestial;
 import packModelo.CPU;
 import packModelo.Carta;
 import packModelo.CartaFactory;
 import packModelo.ColaDelBar;
 import packModelo.EnumColor;
+import packModelo.IObservable;
+import packModelo.IObserver;
 import packModelo.Jugador;
 
 /**
  * Representa el Juego Bar Bestial.
  */
-public class Juego {
+public class Juego implements IObservable {
 	
 	public static final EnumColor jugadorColor = EnumColor.AZUL;
 	public static final EnumColor cpuColor = EnumColor.VERDE;
-	
+
 	private static Juego miJuego;
+	
+	private ArrayList<IObserver> suscritos;
 	private Jugador jugador;
 	private CPU cpu;
 	private int turno;
@@ -33,6 +42,7 @@ public class Juego {
 		jugador = new Jugador(jugadorColor);
 		cpu = new CPU(cpuColor);
 		turno = 0;
+		suscritos = new ArrayList<IObserver>();
 	}
 	
 	public static Juego getJuego() {
@@ -80,6 +90,18 @@ public class Juego {
 			e.printStackTrace();
 		}
 		jugarPartida();
+	}
+	
+	/**
+	 * Inicializa las cartas de cada uno pero no empieza el juego.
+	 */
+	public void testJuegoNuevo() {
+		try {
+			rellenarMazos();
+			robarInicial();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 
@@ -237,6 +259,49 @@ public class Juego {
 			}
 		}
 		
+	}
+	
+	// TODO no se si es buena practica, pero el getter este es para añadir observers al jugador
+	public Jugador getJugador() {
+		return this.jugador;
+	}
+	
+	/**
+	 * Devuelve una representación en JSON del juego entero.
+	 * @return
+	 */
+	public String toJson() {
+		JSONObject json = new JSONObject();
+		JSONObject jsonCola = new JSONObject(ColaDelBar.getColaDelBar().toJson());
+		JSONObject jsonBar = new JSONObject(BarBestial.getBarBestial().toJson());
+		JSONObject jsonJugador = new JSONObject(jugador.toJson());
+		JSONObject jsonCPU = new JSONObject(cpu.toJson());
+		
+		json.put("partida_terminada", this.esFinDelJuego());
+		json.put("cola_del_bar", jsonCola);
+		json.put("bar_bestial", jsonBar);
+		json.put("jugador", jsonJugador);
+		json.put("cpu", jsonCPU);
+
+		return json.toString(2);
+	}
+
+	@Override
+	public void addObserver(IObserver o) {
+		suscritos.add(o);
+	}
+
+	@Override
+	public void removeObserver(IObserver o) {
+		suscritos.remove(o);
+	}
+
+	@Override
+	public void updateObservers() {
+		Iterator<IObserver> it = suscritos.iterator();
+		while (it.hasNext()) {
+			it.next().update();
+		}
 	}
 }
 

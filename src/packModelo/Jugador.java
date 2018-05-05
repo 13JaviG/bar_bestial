@@ -3,6 +3,8 @@
  */
 package packModelo;
 
+import org.json.JSONObject;
+
 /**
  * Representa a un jugador.
  */
@@ -133,8 +135,14 @@ public class Jugador {
 	 * Devuelve un String en formato Json de su mano.
 	 * @return
 	 */
-	public String manoToJson() {
-		return suMano.toJson();
+	public String toJson() {
+		String manoJson = suMano.toJson();
+		String mazoJson = suMazo.toJson();
+		JSONObject resultado = new JSONObject();
+		resultado.put("mano", new JSONObject(manoJson));
+		resultado.put("mazo", new JSONObject(mazoJson));
+		resultado.put("color", color.toString().toLowerCase());
+		return resultado.toString(2);
 	}
 
 }

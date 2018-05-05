@@ -57,5 +57,9 @@ public class BarBestial {
 	public int cuantasCartas() {
 		return susCartas.cuantasCartas();
 	}
+	
+	public String toJson() {
+		return susCartas.toJson();
+	}
 
 }
