@@ -27,6 +27,7 @@ public class Juego {
 	private Jugador jugador;
 	private CPU cpu;
 	private int turno;
+	private String usuarioSesion;
 	
 	private Juego() {
 		jugador = new Jugador(jugadorColor);
@@ -39,6 +40,14 @@ public class Juego {
 			miJuego = new Juego();
 		}
 		return miJuego;
+	}
+	
+	/**
+	 * Setter para el nombre del usuario que ha iniciado sesion.
+	 * @param pUsuario
+	 */
+	public void setUsuarioSesion(String pUsuario) {
+		this.usuarioSesion = pUsuario;
 	}
 	
 	

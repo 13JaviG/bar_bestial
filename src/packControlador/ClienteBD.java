@@ -132,8 +132,7 @@ public class ClienteBD {
 	public boolean iniciarSesion(String pUsuario, String pPass) {
 		boolean inicioExitoso = false;
 		if (this.existeUsuario(pUsuario, pPass)) {
-			// TODO implementar, igual queremos guardar en la clase Juego el nombre del usuario
-			// que ha iniciado sesion
+			Juego.getJuego().setUsuarioSesion(pUsuario);
 			inicioExitoso = true;
 		}
 		return inicioExitoso;
