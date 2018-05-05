@@ -14,6 +14,7 @@ import packModelo.ColaDelBar;
 public class Foca extends Animal {
 	@Override
 	public void hacerAnimalada(Carta pCarta) {
-		ColaDelBar.getColaDelBar().invertirCola();;
+		ColaDelBar.getColaDelBar().invertirCola();
+		ColaDelBar.getColaDelBar().intercambiarEntrada();
 	}
 }
