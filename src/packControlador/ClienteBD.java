@@ -3,14 +3,18 @@
  */
 package packControlador;
 
-import static org.junit.Assert.assertArrayEquals;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import packControlador.Juego;
 
 /**
  * Cliente de base de datos SQlite.
