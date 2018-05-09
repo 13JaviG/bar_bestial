@@ -95,24 +95,26 @@ public class ColaDelBar {
 	 */
 	public void rmvEspMasAltas() {
 		
+
 		int max = 0;	//Valor de la especie m�s alta
 		Carta act;
 		int espAltas = 0; //Cu�ntas especies has eliminado
 		while(espAltas<2 && susCartas.cuantasCartas()>0){
-			for(Iterator<Carta> it = susCartas.getIterator(); it.hasNext();)
+			for(int i = 0; i<susCartas.cuantasCartas();i++)
 			{
-				act=it.next();
+				act=susCartas.cartaIndex(i);
 				if(act.getNum()>max)
 				{
 					max = act.getNum();
 				}
 			}
-			for(Iterator<Carta> it = susCartas.getIterator(); it.hasNext();)
+			for(int i = 0; i<susCartas.cuantasCartas();i++)
 			{
-				act=it.next();
+				act=susCartas.cartaIndex(i);
 				if(act.getNum()==max)
 				{
-					it.remove();
+					susCartas.rmvCarta(i);
+					i--;
 				
 				}
 			}
@@ -132,9 +134,14 @@ public class ColaDelBar {
 	 * @return la carta eliminada.
 	 */
 	public Carta rmvCarta(int pIndex) {
-		if(pIndex  != -1 && pIndex < susCartas.cuantasCartas()){
-			susCartas.rmvCarta(pIndex);
+		while( pIndex < 0 || pIndex > susCartas.cuantasCartas()-1){
+			Scanner in = new Scanner(System.in);
+			System.out.println("El valor introducido es incorrecto.");
+			System.out.println("Introduce un valor entre 0 y "+(susCartas.cuantasCartas()-1));
+			pIndex = in.nextInt();
+			
 		}
+		susCartas.rmvCarta(pIndex);
 		return susCartas.cartaIndex(0);
 	}
 
@@ -160,25 +167,23 @@ public class ColaDelBar {
 	 */
 	public void avanzaSiMayor(Carta pCarta) {
 		
-		Carta act=pCarta;
+		Carta hipopotamo=pCarta;
 		Carta sig;
 		boolean stop = false;
 		int i= susCartas.indexCarta(pCarta); //M�todo que te devuelve el �ndice dependiendo de la carta
 		
 		while(i>0 && !stop)
 		{	
+			System.out.println("Valor de i: "+i);
 			sig= susCartas.cartaIndex(i-1); //M�todo que te devuelve la carta dependiendo del �ndice
 			
-			if(act.getNum()==8 || act.getNum()==11)
-			{		//Si es una jirafa o un hipop�tamo
+			if(hipopotamo.getNum()==11)
+			{		//Si es un hipop�tamo
 				
-				if(sig.getNum()<act.getNum() && sig.getNum()!= 7)
+				if(sig.getNum()<hipopotamo.getNum() && sig.getNum()!= 7)
 				{	//Si es una carta m�s d�bil y no es cebra
 					
-					susCartas.intercambiar(sig,act); // intercambiamos las cartas de posici�n
-					if(act.getNum()==8){	//Si era el caso de la jirafa s�lo avanza una vez
-						stop = true;
-					}
+					susCartas.intercambiar(i-1,i); // intercambiamos las cartas de posici�n
 				}
 				else
 				{
@@ -186,7 +191,6 @@ public class ColaDelBar {
 				}
 			}
 			
-			act=sig;
 			i--;
 		}
 	}
@@ -239,8 +243,7 @@ public class ColaDelBar {
 		int indiceCarta = susCartas.indexCarta(pCarta);
 		if (indiceCarta > 0) {
 			int indiceAnterior = indiceCarta - 1;
-			Carta cartaAnterior = susCartas.cartaIndex(indiceAnterior);
-			susCartas.intercambiar(pCarta, cartaAnterior);
+			susCartas.intercambiar(indiceCarta, indiceAnterior);
 		} else {
 			System.out.println("No puede adelantarse.");
 		}
@@ -257,7 +260,7 @@ public class ColaDelBar {
 			int indiceAnterior = indiceCarta - 1;
 			Carta cartaAnterior = susCartas.cartaIndex(indiceAnterior);
 			if (cartaAnterior.getNum() < pCarta.getNum()) {
-				susCartas.intercambiar(pCarta, cartaAnterior);
+				susCartas.intercambiar(indiceCarta, indiceAnterior);
 			} else {
 				System.out.println("No puede adelantarse.");
 			}

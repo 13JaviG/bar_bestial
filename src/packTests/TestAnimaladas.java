@@ -234,7 +234,6 @@ class TestAnimaladas {
 		System.out.println("hace animalada");
 		mofeta.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
-		assertEquals(null,ColaDelBar.getColaDelBar().getCarta(0));
 		assertEquals(0,ColaDelBar.getColaDelBar().cuantasHay());
 	}
 	
@@ -247,7 +246,6 @@ class TestAnimaladas {
 		System.out.println("hace animalada");
 		mofeta.hacerAnimalada();
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
-		assertEquals(null,ColaDelBar.getColaDelBar().getCarta(0));
 		assertEquals(0,ColaDelBar.getColaDelBar().cuantasHay());
 	}
 	

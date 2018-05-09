@@ -58,10 +58,9 @@ public class ListaCartas {
 	 * @param pCarta1, pCarta2 
 	 * Cartas a intercambiar
 	 */
-	public void intercambiar(Carta pCarta1, Carta pCarta2){
-		Carta aux = pCarta1;
-		int index1 = cartas.indexOf(pCarta1);
-		int index2 = cartas.indexOf(pCarta2);
+	public void intercambiar(int index1, int index2){
+		Carta aux = cartaIndex(index1);
+		Carta pCarta2 = cartaIndex(index2);
 		cartas.set(index1, pCarta2);
 		cartas.set(index2, aux);
 		
