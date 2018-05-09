@@ -221,7 +221,7 @@ public class Juego implements IObservable {
 		}
 		System.out.println("ha ganado jugador?"+haGanadoJugador());
 		if(haGanadoJugador()) {
-			//ClienteBD.getClienteBD().getClienteBD(jugador.getNombre(),jugador.calcularPuntuacion());
+			ClienteBD.getClienteBD().addPuntuacion(usuarioSesion, jugador.calcularPuntuacion());;
 		}
 	}
 
