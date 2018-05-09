@@ -219,7 +219,10 @@ public class Juego implements IObservable {
 			System.out.println("-----------------------------------------");
 			ronda++;
 		}
-		System.out.println("ha ganado jugador?"+haGanadoJugador());		
+		System.out.println("ha ganado jugador?"+haGanadoJugador());
+		if(haGanadoJugador()) {
+			//ClienteBD.getClienteBD().getClienteBD(jugador.getNombre(),jugador.calcularPuntuacion());
+		}
 	}
 
 	/**
