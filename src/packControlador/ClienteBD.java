@@ -3,6 +3,7 @@
  */
 package packControlador;
 
+import packModelo.Convertor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -244,20 +245,13 @@ public class ClienteBD {
 	 * ordenado por la puntuacion ascendentemente.
 	 * @return
 	 */
-	public String obtenerRanking() {
+	public JSONArray obtenerRanking() {
 		JSONArray listaPuntuaciones = new JSONArray();
 		try {
 			stmt = conn.createStatement();
 			String sql = "SELECT * FROM ranking ORDER BY puntos DESC;";
 			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				String usuario = rs.getString("usuario");
-				int puntos = rs.getInt("puntos");
-				String fecha = rs.getString("fecha");
-				listaPuntuaciones.put(new JSONObject().put("usuario", usuario)
-						.put("puntos", puntos)
-						.put("fecha", fecha));
-			}
+			listaPuntuaciones = Convertor.convertToJSON(rs);
 			rs.close();
 			stmt.close();
 		} catch ( Exception e ) {
@@ -265,10 +259,7 @@ public class ClienteBD {
 			System.exit(0);
 		}
 
-		JSONObject resultado = new JSONObject();
-		resultado.put("ranking", listaPuntuaciones);
-
-		return resultado.toString(2);
+		return listaPuntuaciones;
 	}
 
 }
