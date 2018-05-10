@@ -63,11 +63,16 @@ public class ColaDelBar {
 	}
 
 	public void hacerAnimaladasR() {
-		// TODO no se si ha cambiado el orden en la cola
-		Iterator<Carta> itr=susCartas.getIterator();
-		while(itr.hasNext()) {
-			Carta temp=itr.next();
+		
+		int i = 0;
+		while( i<susCartas.cuantasCartas()) {
+			
+			Carta temp=susCartas.cartaIndex(i);
 			temp.recurrir();
+			if(temp.getNum()==10){
+				i=susCartas.indexCarta(temp);
+			}
+			i++;
 		}
 		if (estaLlena()) {colaLlena();}		
 	}
@@ -113,7 +118,8 @@ public class ColaDelBar {
 				act=susCartas.cartaIndex(i);
 				if(act.getNum()==max)
 				{
-					susCartas.rmvCarta(i);
+					Carta esLoQueHay = susCartas.rmvCarta(i);
+					EsLoQueHay.getEsLoQueHay().addCarta(esLoQueHay); //La añadimos a "Es Lo Que Hay"
 					i--;
 				
 				}
@@ -141,7 +147,8 @@ public class ColaDelBar {
 			pIndex = in.nextInt();
 			
 		}
-		susCartas.rmvCarta(pIndex);
+		Carta esLoQueHay = susCartas.rmvCarta(pIndex);
+		EsLoQueHay.getEsLoQueHay().addCarta(esLoQueHay); //La añadimos a "Es Lo Que Hay"
 		return susCartas.cartaIndex(0);
 	}
 
@@ -220,7 +227,8 @@ public class ColaDelBar {
 				if(sig.getNum()<act.getNum() && sig.getNum()!= 7)
 				{	//Si es una carta mï¿½s dï¿½bil y no es cebra
 					
-					susCartas.rmvCarta(sig); // Eliminamos la carta correspondiente
+					Carta esLoQueHay = susCartas.rmvCarta(i-1); // Eliminamos la carta correspondiente
+					EsLoQueHay.getEsLoQueHay().addCarta(esLoQueHay); //La añadimos a "Es Lo Que Hay"		
 					i= susCartas.indexCarta(act); //Damos a 'i' el nuevo valor de la posiciï¿½n del cocodrilo
 					
 				}
