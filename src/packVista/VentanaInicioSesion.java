@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
@@ -63,7 +64,10 @@ public class VentanaInicioSesion {
 		JButton btnInicioSesion = new JButton("Iniciar Sesion");
 		btnInicioSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ClienteBD.getClienteBD().iniciarSesion(usuarioField.toString(), passwordField.toString());
+				if(!ClienteBD.getClienteBD().iniciarSesion(usuarioField.getText(), passwordField.getText())){
+					JOptionPane.showMessageDialog(panel, "Fallo en inicio sesion","error", JOptionPane.ERROR_MESSAGE);
+					//TODO abrir ventana en el else si inicio exitoso
+				}
 			}
 		});
 		panel.add(btnInicioSesion);
