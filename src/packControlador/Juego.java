@@ -6,6 +6,8 @@ package packControlador;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Iterator;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -18,21 +20,18 @@ import packModelo.Carta;
 import packModelo.CartaFactory;
 import packModelo.ColaDelBar;
 import packModelo.EnumColor;
-import packModelo.IObservable;
-import packModelo.IObserver;
 import packModelo.Jugador;
 
 /**
  * Representa el Juego Bar Bestial.
  */
-public class Juego implements IObservable {
+public class Juego extends Observable {
 	
 	public static final EnumColor jugadorColor = EnumColor.AZUL;
 	public static final EnumColor cpuColor = EnumColor.VERDE;
 
 	private static Juego miJuego;
 	
-	private ArrayList<IObserver> suscritos;
 	private Jugador jugador;
 	private CPU cpu;
 	private int turno;
@@ -42,7 +41,6 @@ public class Juego implements IObservable {
 		jugador = new Jugador(jugadorColor);
 		cpu = new CPU(cpuColor);
 		turno = 0;
-		suscritos = new ArrayList<IObserver>();
 	}
 	
 	public static Juego getJuego() {
@@ -221,6 +219,19 @@ public class Juego implements IObservable {
 		}
 		System.out.println("ha ganado jugador?"+haGanadoJugador());		
 	}
+	
+	/**
+	 * Juega una ronda en lugar de ser un bucle de todo el juego, útil para la ventana del juego.
+	 */
+	public void jugarRonda(int pIndiceCartaJugador) {
+		this.notifyObservers(this.toJson());
+		Carta temp=jugador.jugar(pIndiceCartaJugador);
+		ColaDelBar.getColaDelBar().addCarta(temp);
+		temp.hacerAnimalada();
+		jugador.cogerCarta();
+		this.jugarCPU();
+		this.notifyObservers(this.toJson());
+	}
 
 	/**
 	 * Hace que la CPU juegue.
@@ -261,11 +272,6 @@ public class Juego implements IObservable {
 		
 	}
 	
-	// TODO no se si es buena practica, pero el getter este es para añadir observers al jugador
-	public Jugador getJugador() {
-		return this.jugador;
-	}
-	
 	/**
 	 * Devuelve una representación en JSON del juego entero.
 	 * @return
@@ -284,24 +290,6 @@ public class Juego implements IObservable {
 		json.put("cpu", jsonCPU);
 
 		return json.toString(2);
-	}
-
-	@Override
-	public void addObserver(IObserver o) {
-		suscritos.add(o);
-	}
-
-	@Override
-	public void removeObserver(IObserver o) {
-		suscritos.remove(o);
-	}
-
-	@Override
-	public void updateObservers() {
-		Iterator<IObserver> it = suscritos.iterator();
-		while (it.hasNext()) {
-			it.next().update();
-		}
 	}
 }
 
