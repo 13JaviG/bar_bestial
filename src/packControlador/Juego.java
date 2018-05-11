@@ -217,7 +217,10 @@ public class Juego extends Observable {
 			System.out.println("-----------------------------------------");
 			ronda++;
 		}
-		System.out.println("ha ganado jugador?"+haGanadoJugador());		
+		System.out.println("ha ganado jugador?"+haGanadoJugador());
+		if(haGanadoJugador()) {
+			ClienteBD.getClienteBD().addPuntuacion(usuarioSesion, jugador.calcularPuntuacion());;
+		}
 	}
 	
 	/**
