@@ -308,7 +308,7 @@ public class VentanaPrincipal implements Observer {
 		String jsonString = (String) arg1;
 		JSONObject json = new JSONObject(jsonString);
 		// TODO Usar la info del json para poner las cartas en la pantalla
-		// TODO tener en cuenta que si la foca a cambiado el orden la cola del bar se rellena al reves
+		// TODO tener en cuenta que si la foca a cambiado el orden la cola del bar se rellena al reves, en el json de la cola te dice si es normal o cambiar de sitio la entrada
 		// TODO poner como activos solo los botones del jugador que tengan cartas, si no lo tienen desactivar los botones
 
 		// #####################################################################
