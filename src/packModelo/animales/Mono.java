@@ -15,9 +15,10 @@ public class Mono extends Animal {
 
 	public void hacerAnimalada(Carta pCarta) 
 	{
-		ColaDelBar.getColaDelBar().rmvTodasConNum(10); // cocodrilos
-		ColaDelBar.getColaDelBar().rmvTodasConNum(11); // hipopotamos
-		ColaDelBar.getColaDelBar().ponerPrimera(pCarta);
-		ColaDelBar.getColaDelBar().avanzarTodasConNum(pCarta.getNum());
+		ColaDelBar cola = ColaDelBar.getColaDelBar();
+		cola.rmvTodasConNum(10); // cocodrilos
+		cola.rmvTodasConNum(11); // hipopotamos
+		cola.ponerPrimera(pCarta);
+		cola.avanzarTodasConNum(pCarta.getNum());
 	}
 }
