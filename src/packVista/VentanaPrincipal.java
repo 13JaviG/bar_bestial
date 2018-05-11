@@ -70,6 +70,7 @@ public class VentanaPrincipal implements Observer {
 			public void run() {
 				try {
 					VentanaPrincipal window = new VentanaPrincipal();
+					Juego.getJuego().addObserver(window);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -305,11 +306,13 @@ public class VentanaPrincipal implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		System.out.println("probando que recibe el update");
 		String jsonString = (String) arg1;
 		JSONObject json = new JSONObject(jsonString);
 		// TODO Usar la info del json para poner las cartas en la pantalla
 		// TODO tener en cuenta que si la foca a cambiado el orden la cola del bar se rellena al reves, en el json de la cola te dice si es normal o cambiar de sitio la entrada
 		// TODO poner como activos solo los botones del jugador que tengan cartas, si no lo tienen desactivar los botones
+		// TODO quitar de los labels y botones los textos tipo "New label"
 
 		// #####################################################################
 		// ejemplo de como poner una imagen
@@ -322,7 +325,7 @@ public class VentanaPrincipal implements Observer {
 			Image newimg = wPic.getScaledInstance(100, 200,  java.awt.Image.SCALE_SMOOTH);
 			// convertirla en un icono para ponerlo en los labels
 			ImageIcon imagen = 	new ImageIcon(newimg);
-			getLblCPUCarta4().setIcon(imagen);
+			getLblColaEntrada().setIcon(imagen);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
