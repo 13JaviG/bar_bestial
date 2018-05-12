@@ -162,7 +162,9 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JLabel getLblColaEntrada() {
 		if (lblColaEntrada == null) {
-			lblColaEntrada = new JLabel("New label");
+			String dir = System.getProperty("user.dir");
+			Path path= Paths.get(dir, "src","packImagenes","cartas","puerta-del-cielo.png");
+			lblColaEntrada = new JLabel(cargarImagen(path));
 		}
 		return lblColaEntrada;
 	}
@@ -310,35 +312,52 @@ public class VentanaPrincipal implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		descativarBotones();
 		System.out.println("probando que recibe el update");
 		String jsonString = (String) arg1;
 		JSONObject json = new JSONObject(jsonString);
 		// TODO Usar la info del json para poner las cartas en la pantalla
 		// TODO tener en cuenta que si la foca a cambiado el orden la cola del bar se rellena al reves, en el json de la cola te dice si es normal o cambiar de sitio la entrada
 		// TODO poner como activos solo los botones del jugador que tengan cartas, si no lo tienen desactivar los botones
+		botonesActivos();
 		// TODO quitar de los labels y botones los textos tipo "New label"
-		String dir = System.getProperty("user.dir");
-		Path path= Paths.get(dir, "src","packImagenes","cartas","puerta-del-cielo.png");
-		System.out.println(path.toString());
-		// #####################################################################
-		// ejemplo de como poner una imagen
-		// seria buena idea sacar todo esto a una funcion
-		BufferedImage wPic;
-		try {
-			// TODO el codigo para obtener la imagen debería ser multiplataforma (windows, linux)
-			wPic = ImageIO.read(path.toFile());
-			// importante escalar la imagen
-			Image newimg = wPic.getScaledInstance(100, 200,  java.awt.Image.SCALE_SMOOTH);
-			// convertirla en un icono para ponerlo en los labels
-			ImageIcon imagen = 	new ImageIcon(newimg);
-			getLblColaEntrada().setIcon(imagen);
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
-		// fin de ejemplo de como poner una imagen
-		// #####################################################################
+	
+	private void descativarBotones() {
+		// TODO Auto-generated method stub
+		btnCarta1.setEnabled(false);
+		btnCarta2.setEnabled(false);
+		btnCarta3.setEnabled(false);
+		btnCarta4.setEnabled(false);
 	}
-	private void cargarImagen() {
-		
+
+	private void botonesActivos() {
+		// TODO Auto-generated method stub
+		btnCarta1.setEnabled(true);
+		btnCarta2.setEnabled(true);
+		btnCarta3.setEnabled(true);
+		btnCarta4.setEnabled(true);
+	}
+
+	private ImageIcon cargarImagen(Path pPath) {
+		// #####################################################################
+				// ejemplo de como poner una imagen
+				// seria buena idea sacar todo esto a una funcion
+				BufferedImage wPic;
+				ImageIcon imagen=null;
+				try {
+					// TODO el codigo para obtener la imagen debería ser multiplataforma (windows, linux)
+					wPic = ImageIO.read(pPath.toFile());
+					// importante escalar la imagen
+					Image newimg = wPic.getScaledInstance(100, 200,  java.awt.Image.SCALE_SMOOTH);
+					// convertirla en un icono para ponerlo en los labels
+					imagen = new ImageIcon(newimg);
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				// fin de ejemplo de como poner una imagen
+				// #####################################################################
+				return imagen;
 	}
 }
