@@ -37,7 +37,7 @@ class TestBD {
 
 	@Test
 	void test() {
-		String ranking = ClienteBD.getClienteBD().obtenerRanking();
+		String ranking = ClienteBD.getClienteBD().obtenerRanking().toString();
 		System.out.println(ranking);
 		System.out.println();
 		System.out.println();
