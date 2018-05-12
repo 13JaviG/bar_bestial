@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.FlowLayout;
@@ -16,9 +18,11 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import packControlador.Juego;
+import packModelo.ColaDelBar;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -313,14 +317,16 @@ public class VentanaPrincipal implements Observer {
 		// TODO tener en cuenta que si la foca a cambiado el orden la cola del bar se rellena al reves, en el json de la cola te dice si es normal o cambiar de sitio la entrada
 		// TODO poner como activos solo los botones del jugador que tengan cartas, si no lo tienen desactivar los botones
 		// TODO quitar de los labels y botones los textos tipo "New label"
-
+		String dir = System.getProperty("user.dir");
+		Path path= Paths.get(dir, "src","packImagenes","cartas","puerta-del-cielo.png");
+		System.out.println(path.toString());
 		// #####################################################################
 		// ejemplo de como poner una imagen
 		// seria buena idea sacar todo esto a una funcion
 		BufferedImage wPic;
 		try {
 			// TODO el codigo para obtener la imagen debería ser multiplataforma (windows, linux)
-			wPic = ImageIO.read(this.getClass().getResource("../packImagenes/cartas/puerta-del-cielo.png"));
+			wPic = ImageIO.read(path.toFile());
 			// importante escalar la imagen
 			Image newimg = wPic.getScaledInstance(100, 200,  java.awt.Image.SCALE_SMOOTH);
 			// convertirla en un icono para ponerlo en los labels
@@ -331,5 +337,8 @@ public class VentanaPrincipal implements Observer {
 		}
 		// fin de ejemplo de como poner una imagen
 		// #####################################################################
+	}
+	private void cargarImagen() {
+		
 	}
 }
