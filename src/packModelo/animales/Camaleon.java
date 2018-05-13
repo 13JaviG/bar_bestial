@@ -5,7 +5,7 @@ package packModelo.animales;
 
 import java.util.InputMismatchException;
 import java.util.Random;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -24,23 +24,25 @@ public class Camaleon extends Animal {
 	public void hacerAnimalada(Carta pCarta) {
 		Carta temp=null;
 		int opcion = 0;
-		Scanner teclado=new Scanner(System.in);
+		int cuantasHay=ColaDelBar.getColaDelBar().cuantasHay()-1;
+		//Scanner teclado=new Scanner(System.in);
 		boolean avanza=false;
 		if(pCarta.getColor()== Juego.jugadorColor) {
 			while(!avanza) {
 				System.out.println("Campo:");
 				ColaDelBar.getColaDelBar().imprimirColaDelBar();
 				try{
-					String textoDialogo = JOptionPane.showInputDialog("introduce la posicion de la carta a copiar");
+					String textoDialogo = JOptionPane.showInputDialog("introduce la posicion de la carta a copiar (0 a "+cuantasHay+")");
 					int numCopiar=Integer.parseInt(textoDialogo);
 					temp = ColaDelBar.getColaDelBar().getCarta(numCopiar-1);
 					avanza=true;
 					opcion=temp.getNum();
 				}catch(InputMismatchException e) {
 					System.out.println("introduzca un numero");
-					teclado.nextLine();
+					JOptionPane.showMessageDialog(null, "caracter no valido");
 				}catch(IndexOutOfBoundsException e) {
-					System.out.println("introduzca una posicion valida max "+ ColaDelBar.getColaDelBar().cuantasHay());
+					System.out.println("introduzca una posicion valida max (0 a"+ cuantasHay+")");
+					JOptionPane.showMessageDialog(null, "introduzca una posicion valida max (0 a"+ cuantasHay+")");
 				}
 			}
 		}else {

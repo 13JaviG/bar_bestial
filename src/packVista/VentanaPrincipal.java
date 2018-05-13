@@ -15,6 +15,7 @@ import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
@@ -67,6 +68,7 @@ public class VentanaPrincipal implements Observer {
 	private JLabel lblCPUCarta2;
 	private JLabel lblCPUCarta3;
 	private JLabel lblCPUCarta4;
+	private boolean estadoAnterior;
 
 	/**
 	 * Launch the application.
@@ -93,6 +95,7 @@ public class VentanaPrincipal implements Observer {
 		Juego.getJuego().addObserver(this);
 		JSONObject temp=new JSONObject(Juego.getJuego().toJson());
 		ponerCartasJugador(temp.getJSONObject("jugador"));
+		estadoAnterior=false;
 	}
 
 	/**
@@ -180,7 +183,9 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JLabel getLblColaEsLoQueHay() {
 		if (lblColaEsLoQueHay == null) {
-			lblColaEsLoQueHay = new JLabel("New label");
+			String dir = System.getProperty("user.dir");
+			Path path= Paths.get(dir, "src","packImagenes","cartas","es-lo-que-hay.png");
+			lblColaEsLoQueHay = new JLabel(cargarImagen(path));
 		}
 		return lblColaEsLoQueHay;
 	}
@@ -395,12 +400,23 @@ public class VentanaPrincipal implements Observer {
 		JSONArray cartas=pJsonCola.getJSONArray("cartas");
 		if(intercambiado) {
 			colocarColaIntercambiada(cuantas,cartas);
+			if(estadoAnterior!=intercambiado) {intercambiarExtremos();}
 		}else {
-			System.out.println("no esta intercambiado");
 			colocarCola(cuantas,cartas);
+			if(estadoAnterior!=intercambiado) {intercambiarExtremos();}
 		}
 		
 	}
+/**
+ * intercambia los iconos de es lo que hay y bar bestial
+ */
+private void intercambiarExtremos() {
+	// TODO Auto-generated method stub
+	Icon aux=lblColaEntrada.getIcon();
+	lblColaEntrada.setIcon(lblColaEsLoQueHay.getIcon());
+	lblColaEsLoQueHay.setIcon(aux);
+}
+
 /**
  * borra los iconos label que forman la cola
  */
