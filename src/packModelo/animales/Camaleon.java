@@ -34,7 +34,7 @@ public class Camaleon extends Animal {
 				try{
 					String textoDialogo = JOptionPane.showInputDialog("introduce la posicion de la carta a copiar (0 a "+cuantasHay+")");
 					int numCopiar=Integer.parseInt(textoDialogo);
-					temp = ColaDelBar.getColaDelBar().getCarta(numCopiar-1);
+					temp = ColaDelBar.getColaDelBar().getCarta(numCopiar);
 					avanza=true;
 					opcion=temp.getNum();
 				}catch(InputMismatchException e) {

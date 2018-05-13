@@ -80,6 +80,7 @@ class TestAnimaladas {
 		System.out.println("hace animalada");
 		ColaDelBar.getColaDelBar().addCarta(camaleon);
 		camaleon.hacerAnimalada();
+		System.out.println("what=?");
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 	}
 
