@@ -227,13 +227,13 @@ public class Juego extends Observable {
 	 * Juega una ronda en lugar de ser un bucle de todo el juego, útil para la ventana del juego.
 	 */
 	public void jugarRonda(int pIndiceCartaJugador) {
-		this.setChanged();
-		this.notifyObservers(this.toJson());
 		Carta temp=jugador.jugar(pIndiceCartaJugador);
 		ColaDelBar colaBar=ColaDelBar.getColaDelBar();
 		colaBar.addCarta(temp);
 		temp.hacerAnimalada();
 		jugador.cogerCarta();
+		this.setChanged();
+		this.notifyObservers(this.toJson());
 		colaBar.hacerAnimaladasR();
 		this.jugarCPU();
 		colaBar.hacerAnimaladasR();
