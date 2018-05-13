@@ -117,7 +117,6 @@ public class ListaCartas {
 		while (it.hasNext()) {
 			JSONObject cartaActual = new JSONObject(it.next().toJson());
 			cartaActual.put("indice", indice);
-
 			listaJson.put(cartaActual);
 			indice++;
 		}

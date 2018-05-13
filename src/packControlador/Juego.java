@@ -230,12 +230,16 @@ public class Juego extends Observable {
 		this.setChanged();
 		this.notifyObservers(this.toJson());
 		Carta temp=jugador.jugar(pIndiceCartaJugador);
-		ColaDelBar.getColaDelBar().addCarta(temp);
+		ColaDelBar colaBar=ColaDelBar.getColaDelBar();
+		colaBar.addCarta(temp);
 		temp.hacerAnimalada();
 		jugador.cogerCarta();
+		colaBar.hacerAnimaladasR();
 		this.jugarCPU();
+		colaBar.hacerAnimaladasR();
 		this.setChanged();
 		this.notifyObservers(this.toJson());
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 	}
 
 	/**

@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.sun.xml.internal.ws.assembler.dev.ServerTubelineAssemblyContext;
+
 import packControlador.Juego;
 import packModelo.ColaDelBar;
 
@@ -89,6 +91,8 @@ public class VentanaPrincipal implements Observer {
 	public VentanaPrincipal() {
 		initialize();
 		Juego.getJuego().addObserver(this);
+		JSONObject temp=new JSONObject(Juego.getJuego().toJson());
+		ponerCartasJugador(temp.getJSONObject("jugador"));
 	}
 
 	/**
@@ -138,25 +142,25 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JLabel getLblColaCarta3() {
 		if (lblColaCarta3 == null) {
-			lblColaCarta3 = new JLabel("New label");
+			lblColaCarta3 = new JLabel(" ");
 		}
 		return lblColaCarta3;
 	}
 	private JLabel getLblColaCarta4() {
 		if (lblColaCarta4 == null) {
-			lblColaCarta4 = new JLabel("New label");
+			lblColaCarta4 = new JLabel(" ");
 		}
 		return lblColaCarta4;
 	}
 	private JLabel getLblColaCarta2() {
 		if (lblColaCarta2 == null) {
-			lblColaCarta2 = new JLabel("New label");
+			lblColaCarta2 = new JLabel(" ");
 		}
 		return lblColaCarta2;
 	}
 	private JLabel getLblColaCarta1() {
 		if (lblColaCarta1 == null) {
-			lblColaCarta1 = new JLabel("New label");
+			lblColaCarta1 = new JLabel(" ");
 		}
 		return lblColaCarta1;
 	}
@@ -170,7 +174,7 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JLabel getLblColaCarta5() {
 		if (lblColaCarta5 == null) {
-			lblColaCarta5 = new JLabel("New label");
+			lblColaCarta5 = new JLabel(" ");
 		}
 		return lblColaCarta5;
 	}
@@ -199,9 +203,10 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JButton getBtnCarta1() {
 		if (btnCarta1 == null) {
-			btnCarta1 = new JButton("New button");
+			btnCarta1 = new JButton(" ");
 			btnCarta1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					descativarBotones();
 					Juego.getJuego().jugarRonda(0);
 				}
 			});
@@ -210,9 +215,10 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JButton getBtnCarta2() {
 		if (btnCarta2 == null) {
-			btnCarta2 = new JButton("New button");
+			btnCarta2 = new JButton(" ");
 			btnCarta2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					descativarBotones();
 					Juego.getJuego().jugarRonda(1);
 				}
 			});
@@ -221,9 +227,10 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JButton getBtnCarta3() {
 		if (btnCarta3 == null) {
-			btnCarta3 = new JButton("New button");
+			btnCarta3 = new JButton(" ");
 			btnCarta3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					descativarBotones();
 					Juego.getJuego().jugarRonda(2);
 				}
 			});
@@ -232,9 +239,10 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JButton getBtnCarta4() {
 		if (btnCarta4 == null) {
-			btnCarta4 = new JButton("New button");
+			btnCarta4 = new JButton(" ");
 			btnCarta4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					descativarBotones();
 					Juego.getJuego().jugarRonda(3);
 				}
 			});
@@ -287,42 +295,233 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JLabel getLblCPUCarta1() {
 		if (lblCPUCarta1 == null) {
-			lblCPUCarta1 = new JLabel("New label");
+			String dir = System.getProperty("user.dir");
+			Path path= Paths.get(dir, "src","packImagenes","cartas","cara-trasera.png");
+			lblCPUCarta1 = new JLabel(cargarImagen(path));
 		}
 		return lblCPUCarta1;
 	}
 	private JLabel getLblCPUCarta2() {
 		if (lblCPUCarta2 == null) {
-			lblCPUCarta2 = new JLabel("New label");
+			String dir = System.getProperty("user.dir");
+			Path path= Paths.get(dir, "src","packImagenes","cartas","cara-trasera.png");
+			lblCPUCarta2 = new JLabel(cargarImagen(path));
 		}
 		return lblCPUCarta2;
 	}
 	private JLabel getLblCPUCarta3() {
 		if (lblCPUCarta3 == null) {
-			lblCPUCarta3 = new JLabel("New label");
+			String dir = System.getProperty("user.dir");
+			Path path= Paths.get(dir, "src","packImagenes","cartas","cara-trasera.png");
+			lblCPUCarta3 = new JLabel(cargarImagen(path));
 		}
 		return lblCPUCarta3;
 	}
 	private JLabel getLblCPUCarta4() {
 		if (lblCPUCarta4 == null) {
-			lblCPUCarta4 = new JLabel("New label");
+			String dir = System.getProperty("user.dir");
+			Path path= Paths.get(dir, "src","packImagenes","cartas","cara-trasera.png");
+			lblCPUCarta4 = new JLabel(cargarImagen(path));
 		}
 		return lblCPUCarta4;
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		descativarBotones();
 		System.out.println("probando que recibe el update");
 		String jsonString = (String) arg1;
 		JSONObject json = new JSONObject(jsonString);
+		JSONObject jsonCola=json.getJSONObject("cola_del_bar");
+		JSONObject jsonJugador=json.getJSONObject("jugador");
+		JSONObject jsonCPU=json.getJSONObject("cpu");
+		ponerCartasCPU(jsonCPU);
+		ponerCartasCola(jsonCola);
+		ponerCartasJugador(jsonJugador);
 		// TODO Usar la info del json para poner las cartas en la pantalla
 		// TODO tener en cuenta que si la foca a cambiado el orden la cola del bar se rellena al reves, en el json de la cola te dice si es normal o cambiar de sitio la entrada
 		// TODO poner como activos solo los botones del jugador que tengan cartas, si no lo tienen desactivar los botones
-		botonesActivos();
+		botonesActivos(jsonJugador);
 		// TODO quitar de los labels y botones los textos tipo "New label"
 		}
 	
+	private void ponerCartasJugador(JSONObject pJsonJugador) {
+		vaciarBotones();
+		JSONObject mano=pJsonJugador.getJSONObject("mano");
+		JSONArray cartas=mano.getJSONArray("cartas");
+		int numeroCartas=mano.getInt("cuantas");
+		for(int i=0;i<numeroCartas;i++) {
+			JSONObject cartaActual=cartas.getJSONObject(i);
+			int posicion=cartaActual.getInt("indice");
+			String color=cartaActual.getString("color");
+			int num=cartaActual.getInt("numero");
+			ImageIcon image=elegirIcono(color, num);
+			switch (posicion) {
+			case 0:
+				btnCarta1.setIcon(image);
+				break;
+			case 1:
+				btnCarta2.setIcon(image);
+				break;
+			case 2:
+				btnCarta3.setIcon(image);
+				break;
+			case 3:
+				btnCarta4.setIcon(image);
+				break;
+				default:
+			}
+			
+		}
+	}
+/**
+ * vacia los iconos de los botones
+ */
+	private void vaciarBotones() {
+		// TODO Auto-generated method stub
+		btnCarta1.setIcon(null);
+		btnCarta2.setIcon(null);
+		btnCarta3.setIcon(null);
+		btnCarta4.setIcon(null);
+	}
+/**
+ * selecciona cual de los 2 metodos de colocacion de la cola debe usar
+ * @param pJsonCola
+ */
+	private void ponerCartasCola(JSONObject pJsonCola) {
+		vaciarCartasCola();
+		int cuantas=pJsonCola.getInt("cuantas");
+		System.out.println("LLega hasta aqui "+cuantas);
+		boolean intercambiado=pJsonCola.getBoolean("entrada_intercambiada");
+		JSONArray cartas=pJsonCola.getJSONArray("cartas");
+		if(intercambiado) {
+			colocarColaIntercambiada(cuantas,cartas);
+		}else {
+			System.out.println("no esta intercambiado");
+			colocarCola(cuantas,cartas);
+		}
+		
+	}
+/**
+ * borra los iconos label que forman la cola
+ */
+	private void vaciarCartasCola() {
+		// TODO Auto-generated method stub
+		lblColaCarta1.setIcon(null);
+		lblColaCarta2.setIcon(null);
+		lblColaCarta3.setIcon(null);
+		lblColaCarta4.setIcon(null);
+		lblColaCarta5.setIcon(null);
+	}
+/**
+ * coloca en los label cola los iconos de los animales en la cola del bar
+ * @param pCuantas
+ * @param pCartas
+ */
+	private void colocarCola(int pCuantas, JSONArray pCartas) {
+		for(int i = 0;i<pCuantas;i++) {
+			JSONObject cartaActual=pCartas.getJSONObject(i);
+			int posicion=cartaActual.getInt("indice");
+			ImageIcon a=elegirIcono(cartaActual.getString("color"),cartaActual.getInt("numero"));
+			switch (posicion) {
+			case 0:
+				lblColaCarta1.setIcon(a);
+				break;
+			case 1:
+				lblColaCarta2.setIcon(a);
+				break;
+			case 2:
+				lblColaCarta3.setIcon(a);
+				break;
+			case 3:
+				lblColaCarta4.setIcon(a);
+				break;
+			case 4:
+				lblColaCarta5.setIcon(a);
+				break;
+			}
+		}
+	}
+/**
+ * coloca las cartas de manera inversa 
+ * @param pCuantas
+ * @param pCartas
+ */
+	private void colocarColaIntercambiada(int pCuantas, JSONArray pCartas) {
+		for(int i = 0;i<pCuantas;i++) {
+			JSONObject cartaActual=pCartas.getJSONObject(i);
+			int posicion=cartaActual.getInt("indice");
+			ImageIcon a=elegirIcono(cartaActual.getString("color"),cartaActual.getInt("numero"));
+			switch (posicion) {
+			case 0:
+				lblColaCarta5.setIcon(a);
+				break;
+			case 1:
+				lblColaCarta4.setIcon(a);
+				break;
+			case 2:
+				lblColaCarta3.setIcon(a);
+				break;
+			case 3:
+				lblColaCarta2.setIcon(a);
+				break;
+			case 4:
+				lblColaCarta1.setIcon(a);
+				break;
+			}
+		}
+	}
+/**
+ * se encarga de devolver el icono animal que le corresponde
+ * @param pColor
+ * @param pNumero
+ * @return
+ */
+	private ImageIcon elegirIcono(String pColor, int pNumero) {
+		// TODO Auto-generated method stub
+		String dir = System.getProperty("user.dir");
+		Path path= Paths.get(dir, "src","packImagenes","cartas");
+		Path rutaColor;
+		if (pColor.equals("verde")) {
+			rutaColor=Paths.get(path.toString(),"verde");
+		}else {
+			rutaColor=Paths.get(path.toString(),"azul");
+		}
+		path=Paths.get(rutaColor.toString(),pNumero+".png");
+		return cargarImagen(path);
+	}
+/**
+ * pone en los label de la cpu los iconos segun el numero de cartas que tenga
+ * @param pJsonCPU
+ */
+	private void ponerCartasCPU(JSONObject pJsonCPU) {
+		// TODO Auto-generated method stub
+		JSONObject jsonMano=pJsonCPU.getJSONObject("mano");
+		int numCartas=jsonMano.getInt("cuantas");
+		if(!(numCartas==4)) {
+			switch (numCartas){
+			case 3:
+				lblCPUCarta4.setIcon(null);
+				break;
+			case 2:
+				lblCPUCarta3.setIcon(null);
+				break;
+			case 1:
+				lblCPUCarta2.setIcon(null);
+				break;
+			default:
+				lblCPUCarta1.setIcon(null);
+				lblCPUCarta2.setIcon(null);
+				lblCPUCarta3.setIcon(null);
+				lblCPUCarta4.setIcon(null);
+				
+			}				
+		}
+	}
+	
+
+/**
+ * inabilita los botones para que no salte ningun listener mientras otro esta en marcha
+ */
 	private void descativarBotones() {
 		// TODO Auto-generated method stub
 		btnCarta1.setEnabled(false);
@@ -330,15 +529,40 @@ public class VentanaPrincipal implements Observer {
 		btnCarta3.setEnabled(false);
 		btnCarta4.setEnabled(false);
 	}
-
-	private void botonesActivos() {
-		// TODO Auto-generated method stub
-		btnCarta1.setEnabled(true);
-		btnCarta2.setEnabled(true);
-		btnCarta3.setEnabled(true);
-		btnCarta4.setEnabled(true);
+/**
+ * activa los botones segun las cartas que tenga el jugador
+ * @param pJsonJugador 
+ */
+	private void botonesActivos(JSONObject pJsonJugador) {
+		JSONObject mano=pJsonJugador.getJSONObject("mano");
+		int cuantasCartas=mano.getInt("cuantas");
+		switch (cuantasCartas) {
+		case 4:
+			btnCarta1.setEnabled(true);
+			btnCarta2.setEnabled(true);
+			btnCarta3.setEnabled(true);
+			btnCarta4.setEnabled(true);
+			break;
+		case 3:
+			btnCarta1.setEnabled(true);
+			btnCarta2.setEnabled(true);
+			btnCarta3.setEnabled(true);
+			break;
+		case 2:
+			btnCarta1.setEnabled(true);
+			btnCarta2.setEnabled(true);
+			break;
+		case 1:
+			btnCarta1.setEnabled(true);
+			break;
+		default:
+		}
 	}
-
+/**
+ * transforma la foto indicada en el path en ImageIcon
+ * @param pPath
+ * @return
+ */
 	private ImageIcon cargarImagen(Path pPath) {
 		// #####################################################################
 				// ejemplo de como poner una imagen
