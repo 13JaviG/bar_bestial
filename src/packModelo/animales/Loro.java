@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import packControlador.Juego;
 import packModelo.Animal;
 import packModelo.Carta;
@@ -21,11 +23,9 @@ public class Loro extends Animal {
 	public void hacerAnimalada(Carta pCarta)
 	{	
 		if (pCarta.getColor() == Juego.jugadorColor) {
-			Scanner in = new Scanner(System.in);
 			int pIndex = 0;
-				System.out.println("Qué posición ocupa la carta que deseas eliminar?");
-				System.out.println("Introduce un valor entre 0 y "+(ColaDelBar.getColaDelBar().cuantasHay()-1));
-				pIndex = in.nextInt();
+				String textoDialogo = JOptionPane.showInputDialog("Qué posición ocupa la carta que deseas eliminar? Introduce un valor entre 0 y "+(ColaDelBar.getColaDelBar().cuantasHay()-1));
+				pIndex = Integer.parseInt(textoDialogo);
 				ColaDelBar.getColaDelBar().rmvCarta(pIndex);
 			}
 			
