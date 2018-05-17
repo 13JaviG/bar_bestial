@@ -37,14 +37,7 @@ class TestBD {
 
 	@Test
 	void test() {
-		String ranking = ClienteBD.getClienteBD().obtenerRanking().toString();
-		System.out.println(ranking);
-		System.out.println();
-		System.out.println();
-
-		System.out.println("## Como iterar por el JSON ##");
-		JSONObject json = new JSONObject(ranking);
-		JSONArray lista = new JSONArray(json.get("ranking").toString());  // parece que hay que pasarle la lista en string
+		JSONArray lista = ClienteBD.getClienteBD().obtenerRanking();
 		Iterator<Object> it = lista.iterator();
 
 		while (it.hasNext()) {
