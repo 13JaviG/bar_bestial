@@ -126,6 +126,21 @@ class TestAnimaladas {
 		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		assertEquals(jirafa,ColaDelBar.getColaDelBar().getCarta(3));
 	}
+	
+	@Test
+	void testJirafaRecurrente() throws Exception {
+		System.out.println("\nJirafa: puede pasar recurrente");
+		Carta jirafa = new Carta(8,jugarColor,CartaFactory.getCartaFactory().crearCarta(8));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
+		ColaDelBar.getColaDelBar().addCarta(new Carta(1,jugarColor, CartaFactory.getCartaFactory().crearCarta(1)));
+		ColaDelBar.getColaDelBar().addCarta(jirafa);
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		System.out.println("hace animalada recurrente");
+		ColaDelBar.getColaDelBar().hacerAnimaladasR();
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		assertEquals(jirafa,ColaDelBar.getColaDelBar().getCarta(2));
+	}
 
 	@Test
 	void testMono() throws Exception {
