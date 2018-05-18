@@ -66,10 +66,9 @@ public class VentanaInicioSesion {
 			public void actionPerformed(ActionEvent arg0) {
 				if(!ClienteBD.getClienteBD().iniciarSesion(usuarioField.getText(), passwordField.getText())){
 					JOptionPane.showMessageDialog(panel, "Fallo en inicio sesion","error", JOptionPane.ERROR_MESSAGE);
-					//TODO abrir ventana en el else si inicio exitoso
 				}else {
 					frmInicioDeSesion.dispose();
-					VentanaPrincipal.main(null);
+					VentanaMenu.main(null);
 				}
 			}
 		});

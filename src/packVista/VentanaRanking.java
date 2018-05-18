@@ -65,7 +65,7 @@ public class VentanaRanking extends JFrame {
 			JSONObject objectRanking =miRanking.getJSONObject(i);
 			modelo.setValueAt(objectRanking.getString("usuario"), i, 0);
 			modelo.setValueAt(objectRanking.getInt("puntos"), i, 1);
-			modelo.setValueAt(objectRanking.getString("fecha"), i, 2);
+			modelo.setValueAt(objectRanking.get("fecha"), i, 2);
 		}
 		table = new JTable();
 		table.setModel(modelo);

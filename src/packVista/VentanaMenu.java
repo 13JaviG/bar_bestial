@@ -58,8 +58,8 @@ public class VentanaMenu {
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Juego.getJuego().testJuegoNuevo();
-				VentanaPrincipal pri=new VentanaPrincipal();
 				frmMenu.dispose();
+				VentanaPrincipal.main(null);
 			}
 		});
 		btnJugar.setBounds(150, 58, 114, 25);
