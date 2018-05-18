@@ -24,17 +24,21 @@ public class Loro extends Animal {
 	{	
 		if (pCarta.getColor() == Juego.jugadorColor) {
 			int pIndex = 0;
-				String textoDialogo = JOptionPane.showInputDialog("Qué posición ocupa la carta que deseas eliminar? Introduce un valor entre 0 y "+(ColaDelBar.getColaDelBar().cuantasHay()-1));
+				String textoDialogo = JOptionPane.showInputDialog("Quï¿½ posiciï¿½n ocupa la carta que deseas eliminar? Introduce un valor entre 0 y "+(ColaDelBar.getColaDelBar().cuantasHay()-1));
 				pIndex = Integer.parseInt(textoDialogo);
 				ColaDelBar.getColaDelBar().rmvCarta(pIndex);
 			}
 			
 		 else {
+			 	if (ColaDelBar.getColaDelBar().cuantasHay()>1) {
 					Random rand = new Random();
 					int pIndex = rand.nextInt(ColaDelBar.getColaDelBar().cuantasHay()-1) + 0;
-			
-					
 					ColaDelBar.getColaDelBar().rmvCarta(pIndex);
+			 	}
+			 	else
+			 	{
+			 		ColaDelBar.getColaDelBar().rmvCarta(0);
+			 	}
 					
 			}
 		}

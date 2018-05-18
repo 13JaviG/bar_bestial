@@ -67,10 +67,22 @@ public class VentanaInicioSesion {
 				if(!ClienteBD.getClienteBD().iniciarSesion(usuarioField.getText(), passwordField.getText())){
 					JOptionPane.showMessageDialog(panel, "Fallo en inicio sesion","error", JOptionPane.ERROR_MESSAGE);
 					//TODO abrir ventana en el else si inicio exitoso
+				}else {
+					frmInicioDeSesion.dispose();
+					VentanaPrincipal.main(null);
 				}
 			}
 		});
 		panel.add(btnInicioSesion);
+		
+		JButton btnRegistrarse = new JButton("Registrarse");
+		btnRegistrarse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmInicioDeSesion.dispose();
+				VentanaRegistro.main(null);
+			}
+		});
+		panel.add(btnRegistrarse);
 		
 		JPanel panel_1 = new JPanel();
 		frmInicioDeSesion.getContentPane().add(panel_1, BorderLayout.CENTER);

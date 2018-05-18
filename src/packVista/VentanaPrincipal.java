@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import com.sun.xml.internal.ws.assembler.dev.ServerTubelineAssemblyContext;
 
+import packControlador.ClienteBD;
 import packControlador.Juego;
 import packModelo.ColaDelBar;
 
@@ -211,7 +212,7 @@ public class VentanaPrincipal implements Observer {
 			btnCarta1 = new JButton(" ");
 			btnCarta1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					descativarBotones();
+					desactivarBotones();
 					Juego.getJuego().jugarRonda(0);
 				}
 			});
@@ -223,7 +224,7 @@ public class VentanaPrincipal implements Observer {
 			btnCarta2 = new JButton(" ");
 			btnCarta2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					descativarBotones();
+					desactivarBotones();
 					Juego.getJuego().jugarRonda(1);
 				}
 			});
@@ -235,7 +236,7 @@ public class VentanaPrincipal implements Observer {
 			btnCarta3 = new JButton(" ");
 			btnCarta3.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					descativarBotones();
+					desactivarBotones();
 					Juego.getJuego().jugarRonda(2);
 				}
 			});
@@ -247,7 +248,7 @@ public class VentanaPrincipal implements Observer {
 			btnCarta4 = new JButton(" ");
 			btnCarta4.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					descativarBotones();
+					desactivarBotones();
 					Juego.getJuego().jugarRonda(3);
 				}
 			});
@@ -333,6 +334,7 @@ public class VentanaPrincipal implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		desactivarBotones();
 		System.out.println("probando que recibe el update");
 		String jsonString = (String) arg1;
 		JSONObject json = new JSONObject(jsonString);
@@ -346,8 +348,12 @@ public class VentanaPrincipal implements Observer {
 		// TODO tener en cuenta que si la foca a cambiado el orden la cola del bar se rellena al reves, en el json de la cola te dice si es normal o cambiar de sitio la entrada
 		// TODO poner como activos solo los botones del jugador que tengan cartas, si no lo tienen desactivar los botones
 		botonesActivos(jsonJugador);
-		// TODO quitar de los labels y botones los textos tipo "New label"
+		if (json.getBoolean("partida_terminada")) 
+		{
+			frame.dispose();
+			VentanaRanking.getVentanaRanking().empezar();
 		}
+	}
 	
 	private void ponerCartasJugador(JSONObject pJsonJugador) {
 		vaciarBotones();
@@ -400,10 +406,16 @@ public class VentanaPrincipal implements Observer {
 		JSONArray cartas=pJsonCola.getJSONArray("cartas");
 		if(intercambiado) {
 			colocarColaIntercambiada(cuantas,cartas);
-			if(estadoAnterior!=intercambiado) {intercambiarExtremos();}
+			if(estadoAnterior!=intercambiado) {
+				estadoAnterior=intercambiado;
+				intercambiarExtremos();
+			}
 		}else {
 			colocarCola(cuantas,cartas);
-			if(estadoAnterior!=intercambiado) {intercambiarExtremos();}
+			if(estadoAnterior!=intercambiado) {
+				estadoAnterior=intercambiado;
+				intercambiarExtremos();
+				}
 		}
 		
 	}
@@ -538,7 +550,7 @@ private void intercambiarExtremos() {
 /**
  * inabilita los botones para que no salte ningun listener mientras otro esta en marcha
  */
-	private void descativarBotones() {
+	private void desactivarBotones() {
 		// TODO Auto-generated method stub
 		btnCarta1.setEnabled(false);
 		btnCarta2.setEnabled(false);

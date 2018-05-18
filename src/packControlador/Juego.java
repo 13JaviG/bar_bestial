@@ -10,6 +10,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.Delayed;
 
 import org.json.JSONObject;
 
@@ -232,9 +233,10 @@ public class Juego extends Observable {
 		colaBar.addCarta(temp);
 		temp.hacerAnimalada();
 		jugador.cogerCarta();
+		colaBar.hacerAnimaladasR();
 		this.setChanged();
 		this.notifyObservers(this.toJson());
-		colaBar.hacerAnimaladasR();
+		ColaDelBar.getColaDelBar().imprimirColaDelBar();
 		this.jugarCPU();
 		colaBar.hacerAnimaladasR();
 		this.setChanged();

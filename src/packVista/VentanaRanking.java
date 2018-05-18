@@ -64,8 +64,8 @@ public class VentanaRanking extends JFrame {
 		for (int i = 0;i<miRanking.length();i++){
 			JSONObject objectRanking =miRanking.getJSONObject(i);
 			modelo.setValueAt(objectRanking.getString("usuario"), i, 0);
-			modelo.setValueAt(objectRanking.getString("puntos"), i, 1);
-			modelo.setValueAt(objectRanking.getInt("fecha"), i, 2);
+			modelo.setValueAt(objectRanking.getInt("puntos"), i, 1);
+			modelo.setValueAt(objectRanking.getString("fecha"), i, 2);
 		}
 		table = new JTable();
 		table.setModel(modelo);
@@ -78,7 +78,7 @@ public class VentanaRanking extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				miVentanaRanking.setVisible(false);
 				miVentanaRanking = null;
-				//Menú.getRanking().setVisible(true);
+				//Menï¿½.getRanking().setVisible(true);
 			}
 		});
 		btnVolver.setBounds(318, 228, 89, 23);

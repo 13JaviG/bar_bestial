@@ -4,6 +4,7 @@
 package packMain;
 
 import packControlador.Juego;
+import packVista.VentanaInicioSesion;
 import packVista.VentanaPrincipal;
 
 
@@ -28,7 +29,7 @@ public class Main {
 		 * vamos que el unico codigo que necesitamos aqui es abrir la ventana de inicio
 		 */
 		Juego.getJuego().testJuegoNuevo();
-		VentanaPrincipal.main(null);
+		VentanaInicioSesion.main(null);
 	}
 
 }
