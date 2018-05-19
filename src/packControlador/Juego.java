@@ -312,6 +312,7 @@ public class Juego extends Observable {
 		ColaDelBar.getColaDelBar().vaciar();
 		EsLoQueHay.getEsLoQueHay().vaciar();
 		BarBestial.getBarBestial().vaciar();
+		miJuego=null;
 		return ganaJugador;
 	}
 }

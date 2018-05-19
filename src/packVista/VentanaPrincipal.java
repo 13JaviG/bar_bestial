@@ -332,7 +332,6 @@ public class VentanaPrincipal implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		desactivarBotones();
-		System.out.println("probando que recibe el update");
 		String jsonString = (String) arg1;
 		JSONObject json = new JSONObject(jsonString);
 		JSONObject jsonCola=json.getJSONObject("cola_del_bar");
@@ -413,7 +412,6 @@ public class VentanaPrincipal implements Observer {
 	private void ponerCartasCola(JSONObject pJsonCola) {
 		vaciarCartasCola();
 		int cuantas=pJsonCola.getInt("cuantas");
-		System.out.println("LLega hasta aqui "+cuantas);
 		boolean intercambiado=pJsonCola.getBoolean("entrada_intercambiada");
 		JSONArray cartas=pJsonCola.getJSONArray("cartas");
 		if(intercambiado) {
@@ -609,7 +607,6 @@ private void intercambiarExtremos() {
 				BufferedImage wPic;
 				ImageIcon imagen=null;
 				try {
-					System.out.println(pPath);
 					// TODO el codigo para obtener la imagen debería ser multiplataforma (windows, linux)
 					wPic = ImageIO.read(this.getClass().getClassLoader().getResource(pPath.toString()));
 					// importante escalar la imagen
