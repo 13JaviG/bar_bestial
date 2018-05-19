@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.FlowLayout;
@@ -351,7 +352,12 @@ public class VentanaPrincipal implements Observer {
 		if (json.getBoolean("partida_terminada")) 
 		{
 			frame.dispose();
-			VentanaRanking.getVentanaRanking().empezar();
+			try {
+				VentanaRanking.getVentanaRanking().empezar();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

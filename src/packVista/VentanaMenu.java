@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 
@@ -17,11 +18,12 @@ import java.awt.FlowLayout;
 public class VentanaMenu {
 
 	private JFrame frmMenu;
+	private static VentanaMenu miMenu;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -37,10 +39,21 @@ public class VentanaMenu {
 	/**
 	 * Create the application.
 	 */
-	public VentanaMenu() {
+	private VentanaMenu() {
 		initialize();
 	}
-
+	
+	/**
+	 * Getter de miMenu
+	 */
+	public static VentanaMenu getMenu() {
+		if(miMenu==null) {
+			miMenu = new VentanaMenu();
+		}
+		return miMenu;
+	}
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -71,7 +84,12 @@ public class VentanaMenu {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				frmMenu.dispose();
-				VentanaRanking.getVentanaRanking().empezar();
+				try {
+					VentanaRanking.getVentanaRanking().empezar();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnRanking.setBounds(150, 95, 114, 25);

@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,7 +24,7 @@ public class VentanaInicioSesion {
 
 	private JFrame frmInicioDeSesion;
 	private JTextField usuarioField;
-	private JTextField passwordField;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -68,7 +69,7 @@ public class VentanaInicioSesion {
 					JOptionPane.showMessageDialog(panel, "Fallo en inicio sesion","error", JOptionPane.ERROR_MESSAGE);
 				}else {
 					frmInicioDeSesion.dispose();
-					VentanaMenu.main(null);
+					VentanaMenu.main();
 				}
 			}
 		});
@@ -101,7 +102,7 @@ public class VentanaInicioSesion {
 		lblNewLabel.setBounds(50, 74, 83, 15);
 		panel_1.add(lblNewLabel);
 		
-		passwordField = new JTextField();
+		passwordField = new JPasswordField();
 		passwordField.setBounds(152, 72, 124, 19);
 		panel_1.add(passwordField);
 		passwordField.setColumns(10);

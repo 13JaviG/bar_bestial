@@ -107,7 +107,7 @@ public class VentanaRegistro {
 				if (exito) {
 					JOptionPane.showMessageDialog(getPanelFormulario(), usuario + " fue registrado satisfactoriamente.", "Registro", JOptionPane.INFORMATION_MESSAGE);
 					frmIntroduceTusDatos.dispose();
-					VentanaMenu.main(null);
+					VentanaMenu.main();
 				} else {
 					JOptionPane.showMessageDialog(getPanelFormulario(), "El nombre del usuario elegido ya existe.\nElige otro nombre.", "Error al registrarse", JOptionPane.ERROR_MESSAGE);
 				}

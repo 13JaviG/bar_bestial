@@ -1,6 +1,8 @@
 package packVista;
-
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,15 +16,12 @@ import org.json.JSONObject;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 import packControlador.ClienteBD;
 
 public class VentanaRanking extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable table;
 	private static VentanaRanking miVentanaRanking;
@@ -45,8 +44,9 @@ public class VentanaRanking extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public VentanaRanking() {
+	public VentanaRanking() throws SQLException {
 		setTitle("Ranking de Puntuaciones");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -56,16 +56,23 @@ public class VentanaRanking extends JFrame {
 		contentPane.setLayout(null);
 		
 		//Rellenar las tablas con datos de la BBDD
-		JSONArray miRanking = ClienteBD.getClienteBD().obtenerRanking();
+		JSONArray hola = ClienteBD.getClienteBD().obtenerRanking();
 		DefaultTableModel modelo = new DefaultTableModel();
 		modelo.setColumnCount(3);
 		modelo.setColumnIdentifiers(new String[]{"usuario","puntos","fecha"});
-		modelo.setRowCount(miRanking.length());
-		for (int i = 0;i<miRanking.length();i++){
-			JSONObject objectRanking =miRanking.getJSONObject(i);
-			modelo.setValueAt(objectRanking.getString("usuario"), i, 0);
-			modelo.setValueAt(objectRanking.getInt("puntos"), i, 1);
-			modelo.setValueAt(objectRanking.get("fecha"), i, 2);
+		modelo.setRowCount(hola.length());
+		for (int i = 0;i<hola.length();i++){
+			JSONObject hh =hola.getJSONObject(i);
+			if(i==0){			
+				modelo.setValueAt("USUARIO", i, 0);
+				modelo.setValueAt("PUNTOS", i, 1);
+				modelo.setValueAt("FECHA", i, 2);
+			}
+			else{
+			modelo.setValueAt(hh.getString("usuario"), i, 0);
+			modelo.setValueAt(hh.getInt("puntos"), i, 1);
+			modelo.setValueAt(hh.get("fecha"), i, 2);
+			}
 		}
 		table = new JTable();
 		table.setModel(modelo);
@@ -78,18 +85,18 @@ public class VentanaRanking extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				miVentanaRanking.setVisible(false);
 				miVentanaRanking = null;
-				//Menï¿½.getRanking().setVisible(true);
+				//ACCEDER AL MENÚ
 			}
 		});
 		btnVolver.setBounds(318, 228, 89, 23);
 		contentPane.add(btnVolver);
 	}
 	
-	public static VentanaRanking getVentanaRanking() {
+	public static VentanaRanking getVentanaRanking() throws SQLException {
 		if (miVentanaRanking == null) {
 			miVentanaRanking = new VentanaRanking();
+			VentanaMenu.getMenu().main();
 		}
 		return miVentanaRanking;
 	}
-
 }
