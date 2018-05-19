@@ -28,7 +28,6 @@ public class Main {
 		 * 
 		 * vamos que el unico codigo que necesitamos aqui es abrir la ventana de inicio
 		 */
-		Juego.getJuego().testJuegoNuevo();
 		VentanaInicioSesion.main(null);
 	}
 

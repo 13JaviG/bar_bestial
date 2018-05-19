@@ -71,7 +71,8 @@ public class VentanaMenu {
 		btnJugar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Juego.getJuego().testJuegoNuevo();
-				frmMenu.dispose();
+				frmMenu.setVisible(false);
+				frmMenu=null;
 				VentanaPrincipal.main(null);
 			}
 		});
@@ -101,6 +102,7 @@ public class VentanaMenu {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frmMenu.dispose();
+				System.exit(0);
 				
 			}
 			

@@ -85,7 +85,8 @@ public class VentanaRanking extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				miVentanaRanking.setVisible(false);
 				miVentanaRanking = null;
-				//ACCEDER AL MENÚ
+				//ACCEDER AL MENï¿½
+				VentanaMenu.getMenu().main();
 			}
 		});
 		btnVolver.setBounds(318, 228, 89, 23);
@@ -95,7 +96,6 @@ public class VentanaRanking extends JFrame {
 	public static VentanaRanking getVentanaRanking() throws SQLException {
 		if (miVentanaRanking == null) {
 			miVentanaRanking = new VentanaRanking();
-			VentanaMenu.getMenu().main();
 		}
 		return miVentanaRanking;
 	}

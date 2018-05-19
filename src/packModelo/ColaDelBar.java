@@ -119,7 +119,7 @@ public class ColaDelBar {
 				if(act.getNum()==max)
 				{
 					Carta esLoQueHay = susCartas.rmvCarta(i);
-					EsLoQueHay.getEsLoQueHay().addCarta(esLoQueHay); //La añadimos a "Es Lo Que Hay"
+					EsLoQueHay.getEsLoQueHay().addCarta(esLoQueHay); //La aï¿½adimos a "Es Lo Que Hay"
 					i--;
 				
 				}
@@ -139,7 +139,7 @@ public class ColaDelBar {
 	 * @param pIndex
 	 * @return la carta eliminada.
 	 */
-	public Carta rmvCarta(int pIndex) {
+	public void rmvCarta(int pIndex) {
 		while( pIndex < 0 || pIndex > susCartas.cuantasCartas()-1){
 			Scanner in = new Scanner(System.in);
 			System.out.println("El valor introducido es incorrecto.");
@@ -148,8 +148,7 @@ public class ColaDelBar {
 			
 		}
 		Carta esLoQueHay = susCartas.rmvCarta(pIndex);
-		EsLoQueHay.getEsLoQueHay().addCarta(esLoQueHay); //La añadimos a "Es Lo Que Hay"
-		return susCartas.cartaIndex(0);
+		EsLoQueHay.getEsLoQueHay().addCarta(esLoQueHay); //La aï¿½adimos a "Es Lo Que Hay"
 	}
 
 	public void saltarPosicion(int pPos, Carta pCarta) {
@@ -228,7 +227,7 @@ public class ColaDelBar {
 				{	//Si es una carta mï¿½s dï¿½bil y no es cebra
 					
 					Carta esLoQueHay = susCartas.rmvCarta(i-1); // Eliminamos la carta correspondiente
-					EsLoQueHay.getEsLoQueHay().addCarta(esLoQueHay); //La añadimos a "Es Lo Que Hay"		
+					EsLoQueHay.getEsLoQueHay().addCarta(esLoQueHay); //La aï¿½adimos a "Es Lo Que Hay"		
 					i= susCartas.indexCarta(act); //Damos a 'i' el nuevo valor de la posiciï¿½n del cocodrilo
 					
 				}

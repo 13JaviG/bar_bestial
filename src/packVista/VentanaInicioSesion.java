@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 import packControlador.ClienteBD;
+import packControlador.Juego;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -68,6 +69,7 @@ public class VentanaInicioSesion {
 				if(!ClienteBD.getClienteBD().iniciarSesion(usuarioField.getText(), passwordField.getText())){
 					JOptionPane.showMessageDialog(panel, "Fallo en inicio sesion","error", JOptionPane.ERROR_MESSAGE);
 				}else {
+					Juego.getJuego().setUsuarioSesion(usuarioField.getText());
 					frmInicioDeSesion.dispose();
 					VentanaMenu.main();
 				}

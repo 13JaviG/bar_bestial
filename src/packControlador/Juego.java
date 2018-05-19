@@ -12,6 +12,8 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.Delayed;
 
+import javax.swing.JOptionPane;
+
 import org.json.JSONObject;
 
 import packModelo.Animal;
@@ -21,6 +23,7 @@ import packModelo.Carta;
 import packModelo.CartaFactory;
 import packModelo.ColaDelBar;
 import packModelo.EnumColor;
+import packModelo.EsLoQueHay;
 import packModelo.Jugador;
 
 /**
@@ -74,7 +77,6 @@ public class Juego extends Observable {
 	 * @return
 	 */
 	public boolean esFinDelJuego() {
-		
 		return (!jugador.tieneCartas() || !cpu.tieneCartas());
 	}
 	
@@ -234,14 +236,12 @@ public class Juego extends Observable {
 		temp.hacerAnimalada();
 		jugador.cogerCarta();
 		colaBar.hacerAnimaladasR();
-		this.setChanged();
-		this.notifyObservers(this.toJson());
-		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		colaBar.imprimirColaDelBar();
 		this.jugarCPU();
 		colaBar.hacerAnimaladasR();
 		this.setChanged();
 		this.notifyObservers(this.toJson());
-		ColaDelBar.getColaDelBar().imprimirColaDelBar();
+		colaBar.imprimirColaDelBar();
 	}
 
 	/**
@@ -254,6 +254,7 @@ public class Juego extends Observable {
 		ColaDelBar.getColaDelBar().addCarta(cartaCPU);
 		cartaCPU.hacerAnimalada();
 		cpu.cogerCarta();
+		System.out.println("cpu tiene las siguientes cartas"+cpu.numCartasMano());
 	}
 
 	/** 
@@ -301,6 +302,17 @@ public class Juego extends Observable {
 		json.put("cpu", jsonCPU);
 
 		return json.toString(2);
+	}
+	public boolean finalizar() {
+		boolean ganaJugador=haGanadoJugador();
+		JOptionPane.showMessageDialog(null, "CPU:"+cpu.calcularPuntuacion()+" Jugador:"+jugador.calcularPuntuacion());
+		if(ganaJugador) {
+			ClienteBD.getClienteBD().addPuntuacion(usuarioSesion, jugador.calcularPuntuacion());
+		}
+		ColaDelBar.getColaDelBar().vaciar();
+		EsLoQueHay.getEsLoQueHay().vaciar();
+		BarBestial.getBarBestial().vaciar();
+		return ganaJugador;
 	}
 }
 

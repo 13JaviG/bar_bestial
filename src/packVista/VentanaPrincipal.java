@@ -38,6 +38,8 @@ import javax.swing.Box;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -351,9 +353,19 @@ public class VentanaPrincipal implements Observer {
 		botonesActivos(jsonJugador);
 		if (json.getBoolean("partida_terminada")) 
 		{
-			frame.dispose();
 			try {
-				VentanaRanking.getVentanaRanking().empezar();
+				if(Juego.getJuego().finalizar()) 
+				{
+					frame.dispose();
+					JOptionPane.showMessageDialog(null, "Gana JUGADOR");
+					VentanaRanking.getVentanaRanking().empezar();
+				}
+				else
+				{
+					frame.dispose();
+					JOptionPane.showMessageDialog(null, "Gana CPU");
+					VentanaMenu.main();
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
