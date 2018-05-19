@@ -266,7 +266,7 @@ public class ColaDelBar {
 		if (indiceCarta > 0) {
 			int indiceAnterior = indiceCarta - 1;
 			Carta cartaAnterior = susCartas.cartaIndex(indiceAnterior);
-			if (cartaAnterior.getNum() < pCarta.getNum()) {
+			if (cartaAnterior.getNum() < pCarta.getNum() && cartaAnterior.getNum()!=7) {
 				susCartas.intercambiar(indiceCarta, indiceAnterior);
 			} else {
 				System.out.println("No puede adelantarse.");

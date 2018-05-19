@@ -173,8 +173,7 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JLabel getLblColaEntrada() {
 		if (lblColaEntrada == null) {
-			String dir = System.getProperty("user.dir");
-			Path path= Paths.get(dir, "src","packImagenes","cartas","puerta-del-cielo.png");
+			Path path= Paths.get("packImagenes","cartas","puerta-del-cielo.png");
 			lblColaEntrada = new JLabel(cargarImagen(path));
 		}
 		return lblColaEntrada;
@@ -187,8 +186,7 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JLabel getLblColaEsLoQueHay() {
 		if (lblColaEsLoQueHay == null) {
-			String dir = System.getProperty("user.dir");
-			Path path= Paths.get(dir, "src","packImagenes","cartas","es-lo-que-hay.png");
+			Path path= Paths.get("packImagenes","cartas","es-lo-que-hay.png");
 			lblColaEsLoQueHay = new JLabel(cargarImagen(path));
 		}
 		return lblColaEsLoQueHay;
@@ -304,32 +302,28 @@ public class VentanaPrincipal implements Observer {
 	}
 	private JLabel getLblCPUCarta1() {
 		if (lblCPUCarta1 == null) {
-			String dir = System.getProperty("user.dir");
-			Path path= Paths.get(dir, "src","packImagenes","cartas","cara-trasera.png");
+			Path path= Paths.get("packImagenes","cartas","cara-trasera.png");
 			lblCPUCarta1 = new JLabel(cargarImagen(path));
 		}
 		return lblCPUCarta1;
 	}
 	private JLabel getLblCPUCarta2() {
 		if (lblCPUCarta2 == null) {
-			String dir = System.getProperty("user.dir");
-			Path path= Paths.get(dir, "src","packImagenes","cartas","cara-trasera.png");
+			Path path= Paths.get("packImagenes","cartas","cara-trasera.png");
 			lblCPUCarta2 = new JLabel(cargarImagen(path));
 		}
 		return lblCPUCarta2;
 	}
 	private JLabel getLblCPUCarta3() {
 		if (lblCPUCarta3 == null) {
-			String dir = System.getProperty("user.dir");
-			Path path= Paths.get(dir, "src","packImagenes","cartas","cara-trasera.png");
+			Path path= Paths.get("packImagenes","cartas","cara-trasera.png");
 			lblCPUCarta3 = new JLabel(cargarImagen(path));
 		}
 		return lblCPUCarta3;
 	}
 	private JLabel getLblCPUCarta4() {
 		if (lblCPUCarta4 == null) {
-			String dir = System.getProperty("user.dir");
-			Path path= Paths.get(dir, "src","packImagenes","cartas","cara-trasera.png");
+			Path path= Paths.get("packImagenes","cartas","cara-trasera.png");
 			lblCPUCarta4 = new JLabel(cargarImagen(path));
 		}
 		return lblCPUCarta4;
@@ -524,8 +518,7 @@ private void intercambiarExtremos() {
  */
 	private ImageIcon elegirIcono(String pColor, int pNumero) {
 		// TODO Auto-generated method stub
-		String dir = System.getProperty("user.dir");
-		Path path= Paths.get(dir, "src","packImagenes","cartas");
+		Path path= Paths.get("packImagenes","cartas");
 		Path rutaColor;
 		if (pColor.equals("verde")) {
 			rutaColor=Paths.get(path.toString(),"verde");
@@ -616,8 +609,9 @@ private void intercambiarExtremos() {
 				BufferedImage wPic;
 				ImageIcon imagen=null;
 				try {
+					System.out.println(pPath);
 					// TODO el codigo para obtener la imagen debería ser multiplataforma (windows, linux)
-					wPic = ImageIO.read(pPath.toFile());
+					wPic = ImageIO.read(this.getClass().getClassLoader().getResource(pPath.toString()));
 					// importante escalar la imagen
 					Image newimg = wPic.getScaledInstance(100, 200,  java.awt.Image.SCALE_SMOOTH);
 					// convertirla en un icono para ponerlo en los labels
