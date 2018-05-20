@@ -62,10 +62,6 @@ public class VentanaPrincipal implements Observer {
 	private JButton btnCarta2;
 	private JButton btnCarta3;
 	private JButton btnCarta4;
-	private JMenuBar menuBar;
-	private JMenu mnNewMenu;
-	private JMenuItem mntmNewMenuItem;
-	private JMenuItem mntmNewMenuItem_1;
 	private Component verticalStrut_1;
 	private JPanel panel_1;
 	private JLabel lblCPUCarta1;
@@ -118,7 +114,6 @@ public class VentanaPrincipal implements Observer {
 		if (panelCartasCPU == null) {
 			panelCartasCPU = new JPanel();
 			panelCartasCPU.setLayout(new BorderLayout(0, 0));
-			panelCartasCPU.add(getMenuBar(), BorderLayout.NORTH);
 			panelCartasCPU.add(getVerticalStrut_1(), BorderLayout.WEST);
 			panelCartasCPU.add(getPanel_1(), BorderLayout.CENTER);
 		}
@@ -256,33 +251,6 @@ public class VentanaPrincipal implements Observer {
 		}
 		return btnCarta4;
 	}
-	private JMenuBar getMenuBar() {
-		if (menuBar == null) {
-			menuBar = new JMenuBar();
-			menuBar.add(getMnNewMenu());
-			menuBar.add(getMntmNewMenuItem_1());
-		}
-		return menuBar;
-	}
-	private JMenu getMnNewMenu() {
-		if (mnNewMenu == null) {
-			mnNewMenu = new JMenu("New menu");
-			mnNewMenu.add(getMntmNewMenuItem());
-		}
-		return mnNewMenu;
-	}
-	private JMenuItem getMntmNewMenuItem() {
-		if (mntmNewMenuItem == null) {
-			mntmNewMenuItem = new JMenuItem("New menu item");
-		}
-		return mntmNewMenuItem;
-	}
-	private JMenuItem getMntmNewMenuItem_1() {
-		if (mntmNewMenuItem_1 == null) {
-			mntmNewMenuItem_1 = new JMenuItem("New menu item");
-		}
-		return mntmNewMenuItem_1;
-	}
 	private Component getVerticalStrut_1() {
 		if (verticalStrut_1 == null) {
 			verticalStrut_1 = Box.createVerticalStrut(150);
@@ -412,6 +380,7 @@ public class VentanaPrincipal implements Observer {
 	private void ponerCartasCola(JSONObject pJsonCola) {
 		vaciarCartasCola();
 		int cuantas=pJsonCola.getInt("cuantas");
+		
 		boolean intercambiado=pJsonCola.getBoolean("entrada_intercambiada");
 		JSONArray cartas=pJsonCola.getJSONArray("cartas");
 		if(intercambiado) {
